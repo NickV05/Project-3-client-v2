@@ -1,10 +1,11 @@
 import axios from "axios"
 
 
+
 export const get = (route) => {
     let token = localStorage.getItem('authToken')
 
-    return axios.get(process.env.SERVER_URL + route, {
+    return axios.get(import.meta.env.VITE_SERVER_URL + route, {
         headers: { Authorization: `Bearer ${token}` }
     })
 }
@@ -12,7 +13,7 @@ export const get = (route) => {
 export const post = (route, body) => {
     let token = localStorage.getItem('authToken')
 
-    return axios.post(process.env.SERVER_URL + route, body, {
+    return axios.post(import.meta.env.VITE_SERVER_URL + route, body, {
         headers: { Authorization: `Bearer ${token}` }
     })
 }
@@ -20,7 +21,7 @@ export const post = (route, body) => {
 export const put = (route, body) => {
     let token = localStorage.getItem('authToken')
 
-    return axios.put(process.env.SERVER_URL + route, body, {
+    return axios.put(import.meta.env.VITE_SERVER_URL + route, body, {
         headers: { Authorization: `Bearer ${token}` }
     })
 }
@@ -28,7 +29,7 @@ export const put = (route, body) => {
 export const axiosDelete = (route) => {
     let token = localStorage.getItem('authToken')
 
-    return axios.delete(process.env.SERVER_URL + route, {
+    return axios.delete(import.meta.env.VITE_SERVER_URL + route, {
         headers: { Authorization: `Bearer ${token}` }
     })
 }

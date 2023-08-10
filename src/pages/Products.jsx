@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { get } from "../services/authService";
 import EachProduct from "../components/EachProduct";
-import { Link } from "react-router-dom";
+
 
 
 const Products = () => {
-    const getToken = () => {
-        return localStorage.getItem('authToken')
-      }
+    
     const [allProducts, setMarket] = useState([]);
 
     const getAllProducts = () => {
