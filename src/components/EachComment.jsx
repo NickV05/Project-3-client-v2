@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { post } from "../services/authService";
+import { Link } from "react-router-dom";
 
 
-const EachComment = ({ comment, author, _id, item, getAllDetails }) => {
+const EachComment = ({ comment, author, _id, getAllDetails }) => {
     const { user } = useContext(AuthContext);
     const [editing, setEditing] = useState(false);
     const [editedComment, setEditedComment] = useState(comment);
@@ -33,10 +34,12 @@ const EachComment = ({ comment, author, _id, item, getAllDetails }) => {
     };
 
     return (
-        <div>
+        <div >
             <p>{comment}</p>
-            <p>Author: {author.fullName}</p>
+            <Link to={`/profile/${author._id}`}>
+            <p className ="mb-4 border-b-2 border-black leading-relaxed font-extrabold text-1xl text-palette-primary" >Author: {author.fullName}</p>
 
+            </Link>
             {author._id === user._id && (
                 <div>
                     <button onClick={deleteReview} className=" text-white border my-3 border-palette-primary text-palette-primary text-lg 

@@ -28,7 +28,7 @@ const Products = () => {
           return (
             <EachProduct key={product._id} {...product} />
           );
-        }) : <p>No products</p>}
+        }) : <p>Loading </p>}
         
     </div>
 
