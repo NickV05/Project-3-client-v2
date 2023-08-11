@@ -103,7 +103,7 @@ const Profile = () => {
             <ItemInProfile key={item._id} {...item} />
       
           );
-        }) : <p>No listed items yet!</p>
+        }) : <p className ="text-center">No listed items yet!</p>
         
         }
 
@@ -119,7 +119,7 @@ const Profile = () => {
         onSubmit={handleSubmit}
         class="flex flex-col justify-center align-middle mt-60"
       >
-        <div class="relative mb-6 flex justify-center" data-te-input-wrapper-init>
+        <div class="relative mb-6 flex justify-center" >
           <input
             type="text"
             name="fullName"
@@ -132,8 +132,8 @@ const Profile = () => {
           />
         </div>
 
-        <div class="relative mb-6 flex justify-center" data-te-input-wrapper-init>
-        <textarea
+        <div class="relative mb-6 flex justify-center" >
+        <input
              type="text"
             name="username"
             value={updatedUser.username}
@@ -146,7 +146,7 @@ const Profile = () => {
           />
         </div>
 
-        <div class="relative mb-6 flex justify-center" data-te-input-wrapper-init>
+        <div class="relative mb-6 flex justify-center" >
           <input
            type="text"
             name="location"
@@ -160,7 +160,7 @@ const Profile = () => {
           />
         </div>
 
-        <div class="relative mb-6 flex justify-center" data-te-input-wrapper-init>
+        <div class="relative mb-6 flex justify-center" >
           <input
             type="file" 
             name="image" 

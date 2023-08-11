@@ -62,7 +62,7 @@ function SignupPage() {
       >
         <div
           class="relative mb-6 flex flex-col justify-center align-middle"
-          data-te-input-wrapper-init
+          
         >
           <input
             type="email"
@@ -74,7 +74,7 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" data-te-input-wrapper-init>
+        <div class="relative mb-6">
           <input
             type="password"
             name="password"
@@ -88,7 +88,7 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" data-te-input-wrapper-init>
+        <div class="relative mb-6" >
           <input
             type="text"
             name="fullName"
@@ -102,7 +102,7 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" data-te-input-wrapper-init>
+        <div class="relative mb-6" >
           <input
             type="text"
             name="username"
@@ -116,7 +116,7 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" data-te-input-wrapper-init>
+        <div class="relative mb-6" >
           <input
             type="text"
             name="location"

@@ -61,19 +61,19 @@ function LoginPage() {
             >
               <div
                 class="relative mb-6 flex flex-col justify-center align-middle"
-                data-te-input-wrapper-init
+
               >
                 <input
                   type="email"
                   name="email"
                   onChange={handleEmail}
                   class="peer flex min-h-[auto] w-1/2 justify-center align-middle rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                  id="exampleFormControlInput3"
+                  
                   placeholder="Email address"
                 />
               </div>
 
-              <div class="relative mb-6" data-te-input-wrapper-init>
+              <div class="relative mb-6" >
                 <input
                   type="password"
                   name="password"
@@ -82,7 +82,7 @@ function LoginPage() {
                   outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 
                   motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 
                   [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                  id="exampleFormControlInput33"
+    
                   placeholder="Password"
                 />
               </div>
