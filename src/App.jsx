@@ -9,6 +9,9 @@ import AddProduct from "./pages/AddProduct";
 import ProductDetails from "./pages/ProductDetails";
 import EditProductPage from "./pages/EditProductPage";
 import Profile from "./pages/Profile";
+import Success from "./pages/Success";
+import CancelPayment from "./pages/CancelPayment";
+
 
 function App() {
 
@@ -37,6 +40,8 @@ function App() {
         <Route path="/product/edit/:productId" element={<EditProductPage />} />
         <Route path="/product/add-comment/:productId" element={<EditProductPage />} />
         <Route path="/profile/:userId" element={ <Profile /> } />
+        <Route path="/success" element={ <Success /> } />
+        <Route path="/cancel" element={<CancelPayment />} />
 
         </Route>
 

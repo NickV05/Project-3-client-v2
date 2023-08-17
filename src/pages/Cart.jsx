@@ -134,7 +134,7 @@ const Cart = () => {
             <p class ="text-center">Subtotal: $ {cart.subtotal} </p>
             <p class ="text-center">Tax: 8%</p>
             <p class ="text-center">Total: $ {cart.total} </p>
-            <button class ="w-1/3 ml-64 " onClick={proceedToPayment}>Proceed to checkout</button>
+            <button class ="w-1/3 ml-64 font-primary font-medium px-4 sm:px-6 py-2 text-white" onClick={proceedToPayment}>Proceed to checkout</button>
             </div>
           </div>
         ) : (

@@ -1,7 +1,5 @@
 import axios from "axios"
 
-
-
 export const get = (route) => {
     let token = localStorage.getItem('authToken')
 

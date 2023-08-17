@@ -89,7 +89,7 @@ const Profile = () => {
         <img src={userProfile.image} alt="userImage"/>
         <h4 className = "text-center">Location: {userProfile.location}</h4>
         {user ? <div className = "flex justify-center mt-4">
-        {(user._id === userId) && <button onClick={editProfile} >Edit Profile</button>}
+        {(user._id === userId) && <button onClick={editProfile} className ="text-white font-semibold py-1 px-2">Edit Profile</button>}
 
         </div>
           : <p>Loading</p>
