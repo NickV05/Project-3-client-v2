@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const EachProduct = ({ cost, name, _id, owner, image}) => {
 
+
     return (
       <div className="h-90 w-72 rounded shadow-lg mx-auto border border-palette-lighter">
           <div className="h-62 border-b-2 border-palette-lighter relative">
@@ -20,7 +21,7 @@ const EachProduct = ({ cost, name, _id, owner, image}) => {
           </Link>
 
           <div className="font-primary text-palette-primary text-1xl pt-4 px-4 font-semibold text-center">
-          <h3>Price: {cost} $</h3>
+          <h3>Price: {cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} $</h3>
           </div>
         </div>
       </div>

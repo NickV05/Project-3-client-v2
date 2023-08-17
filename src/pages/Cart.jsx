@@ -12,6 +12,10 @@ const Cart = () => {
   const navigate = useNavigate();
   const cartId = cart?._id;
 
+  const formatNumber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
 
   useEffect(() => {
 
@@ -119,7 +123,7 @@ const Cart = () => {
                         <img src={image} alt="productImage" height={64}
                   width={64} />
                       </td>
-                      <td className="font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell">${cost}</td>
+                      <td className="font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell">${formatNumber(cost)}</td>
                       <td className="font-primary font-medium px-4 sm:px-6 py-4">{quantity}</td>
                       <td>
                         <button onClick={() => decreaseItem(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Decrease amount</button>
@@ -131,9 +135,9 @@ const Cart = () => {
               </tbody>
             </table>
             <div class = "flex flex-col justify-center align-middle">
-            <p class ="text-center">Subtotal: $ {cart.subtotal} </p>
+            <p class ="text-center">Subtotal: $ {formatNumber(cart.subtotal)} </p>
             <p class ="text-center">Tax: 8%</p>
-            <p class ="text-center">Total: $ {cart.total} </p>
+            <p class ="text-center">Total: $ {formatNumber(cart.total)} </p>
             <button class ="w-1/3 ml-64 font-primary font-medium px-4 sm:px-6 py-2 text-white" onClick={proceedToPayment}>Proceed to checkout</button>
             </div>
           </div>
