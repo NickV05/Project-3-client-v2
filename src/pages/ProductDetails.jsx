@@ -262,7 +262,11 @@ const ProductDetails = () => {
       )}
 
 
-      <div className =" w-96 mt-4">
+      {details && (<div className =" w-96 mt-4">
+
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ({details.comments.length})</h2>
+    </div>
       {isEditing && (
         <form onSubmit={handleCommentSubmit} className="mb-6">
           <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -306,7 +310,7 @@ const ProductDetails = () => {
               ))}
         </div>
       )}
-    </div>
+    </div>)}
     </div>
   );
 };
