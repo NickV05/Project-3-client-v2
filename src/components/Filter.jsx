@@ -25,7 +25,7 @@ useEffect(() => {
   }, [selectedCategory]);
 
   return (
-    <div className="flex mt-7 h-14 mr-auto ">
+    <div className="flex mt-7 h-14 mr-3">
       <div className="relative inline-block w-36">
         
         <select

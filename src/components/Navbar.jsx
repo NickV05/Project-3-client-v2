@@ -45,7 +45,7 @@ function Navbar() {
         
         <Link to="/cart">
         <span className = "flex mr-7">
-          <img src="/public/cart.png" className="w-8 h-8 mr-3 "/> {number !== 0 && <p className="text-base mt-1 font-bold border-b-2 border-black">{number}</p>}
+          <img src="/cart.png" className="w-8 h-8 mr-3 "/> {number !== 0 && <p className="text-base mt-1 font-bold border-b-2 border-black">{number}</p>}
         </span>
         </Link>
 

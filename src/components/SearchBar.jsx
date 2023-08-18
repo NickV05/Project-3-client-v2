@@ -28,7 +28,7 @@ const SearchBar = ({getAllProducts, setMarket}) => {
     
 
   return (
-    <form className ="lg:mt-7 ml-auto mr-3">
+    <form className ="mt-7 ml-auto mr-3">
       <label
         for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
