@@ -11,6 +11,7 @@ const AddProduct = () => {
     cost: 0,
     description: "",
     image: "",
+    category: ""
   });
 
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -40,6 +41,12 @@ const AddProduct = () => {
         setErrorMessage(errorDescription);
       });
   };
+
+  const handleSelectionChange = (e) => {
+    const itemTypeSelect = document.getElementById('categoryType');
+    setProduct((prev) => ({...prev,[e.target.name]: itemTypeSelect.value}));
+    
+  }
 
   const handleFileChange = (e) => {
 
@@ -107,6 +114,30 @@ const AddProduct = () => {
         placeholder="Price"
         onChange={handleNumberChange}
       />
+    </div>
+
+    <div class="relative mb-6 flex justify-center" data-te-input-wrapper-init>
+      <select
+        id="categoryType"
+        name="category"
+        class="peer block min-h-[auto] rounded justify-center align-middle border-2 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
+        outline-none transition-all duration-200 ease-linear"
+        onChange={handleSelectionChange}
+        >
+      <option value="foodAndDrinks">Food & Drinks</option>
+      <option value="clothes">Clothes</option>
+      <option value="electronics">Electronics</option>
+      <option value="vehicles">Vehicles</option>
+      <option value="homeAndGarden">Home & Garden</option>
+      <option value="forKids">For Kids</option>
+      <option value="health">Health & Personal Care</option>
+      <option value="software">Software</option>
+      <option value="art">Art & Crafts</option>
+      <option value="travel">Travel</option>
+      <option value="music">Music</option>
+      <option value="sport">Sport</option>
+      <option value="office">Office Products</option>
+    </select>
     </div>
 
     <div class="relative mb-6 flex justify-center" data-te-input-wrapper-init>

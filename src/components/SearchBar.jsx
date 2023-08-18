@@ -7,7 +7,7 @@ const SearchBar = ({getAllProducts, setMarket}) => {
     const getData = (value) => {
         console.log("Value ===>", value);
         value
-            ? get('/items')
+            ? get("/items")
                 .then((response) => {
                     console.log("Searched products:", response.data);
                     const results = response.data.filter((item) =>
@@ -28,7 +28,7 @@ const SearchBar = ({getAllProducts, setMarket}) => {
     
 
   return (
-    <form className ="lg:mt-7 ml-96 mr-96 ">
+    <form className ="lg:mt-7 ml-auto mr-3">
       <label
         for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
