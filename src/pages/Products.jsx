@@ -26,19 +26,16 @@ const Products = () => {
         <SearchBar getAllProducts={getAllProducts} setMarket={setMarket} />
         <Filter getAllProducts={getAllProducts} setMarket={setMarket}/>
       </div>
-      <div class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
-        {allProducts.length ? (
-          allProducts.map((product) => {
+      {allProducts.length ? <div class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+        
+          {allProducts.map((product) => {
             return <EachProduct key={product._id} {...product} />;
-          })
-        ) : (
-          <img
-            src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1691760277/project3/spinner_jtv0k4.gif"
-            class="w-full flex justify-center align-middle"
-            alt="Spinner"
-          />
-        )}
-      </div>
+          })}
+          </div>
+         : 
+          <div className ="flex justify-center ml-9 font-bold mt-56 text-2xl">No items were found</div>
+        }
+      
     </div>
   );
 };
