@@ -57,6 +57,14 @@ const ProductDetails = () => {
     setReview({ comment: "" });
   };
 
+  const deleteProduct = () => {
+    post(`/items/delete-item/${productId}`)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
+
   const addToCart = () => {
     if (cart.message) {
       const body = {
@@ -112,132 +120,194 @@ const ProductDetails = () => {
   };
 
   return (
-    <>
-      {details && (
-        <div className="flex flex-col justify-between h-full w-full md:w-1/2 max-w-xs mx-auto space-y-4 min-h-128">
-          <Link to="/">
-            <button
-              className=" text-white border border-palette-primary text-palette-primary text-lg 
-            font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light 
-            focus:outline-none w-full hover:bg-palette-lighter rounded-sm mt-5"
-            >
-              Back to products
-            </button>
-          </Link>
-
-          <div className="font-primary">
-            <h1 className="leading-relaxed font-extrabold text-3xl text-palette-primary ">
-              {details.name}
-            </h1>
-            <div className="relative h-58">
-              <img
-                src={details.image}
-                alt="productImage"
-                layout="fill"
-                className="transform duration-500 ease-in-out hover:scale-105"
-              />
-            </div>
-            <div className="text-xl text-palette-primary font-medium py-4 px-1">
-              <p className="text-2xl">
-                {details.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                $
-              </p>
-            </div>
-            <p className="font-medium text-lg">{details.description}</p>
-          </div>
-
-          <div className="w-full">
-            {details._id && (
-              <>
-                {user && (
-                  <div>
-                    {isOwner() && (
-                      <Link to={`/product/edit/${productId}`}>
-                        <button
-                          className=" text-white border border-palette-primary text-palette-primary text-lg 
-            font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light 
-            focus:outline-none w-full hover:bg-palette-lighter rounded-sm"
+    <div className ="flex ">
+      {details ? (
+        <div
+          id="readProductModal"
+          tabIndex="-1"
+          className="flex justify-start ml-10 items-center w-50 md:inset-0 h-modal md:h-full"
+        >
+          <div className="relative p-4 w-full max-w-xl h-full md:h-auto">
+            <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+              <div className="flex justify-between mb-4 rounded-t sm:mb-5">
+                <div className="text-lg text-gray-900 md:text-xl dark:text-white">
+                  <h3 className="font-semibold ">{details.name}</h3>
+                  <p className="font-bold">
+                    {details.cost
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                    $
+                  </p>
+                  <img src={details.image} />
+                </div>
+                <div>
+                  <Link to="/">
+                    <button
+                      type="button"
+                      className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg 
+                        text-sm p-1.5 inline-flex dark:hover:bg-gray-600 dark:hover:text-white"
+                      data-modal-toggle="readProductModal"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 
+                            4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      <span className="sr-only">Close modal</span>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+              <dl>
+                <dt className="mb-2 font-semibold leading-none text-gray-900 dark:text-white">
+                  Details
+                </dt>
+                <dd className="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+                  {details.description}
+                </dd>
+              </dl>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  {isOwner() && (
+                    <Link to={`/product/edit/${details._id}`}>
+                      <button
+                        type="button"
+                        className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 
+                        focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 
+                        dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      >
+                        <svg
+                          className="mr-1 -ml-1 w-5 h-5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          Edit Product info
-                        </button>
-                      </Link>
-                    )}
-                  </div>
-                )}
-              </>
-            )}
+                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
+                          <path
+                            fillRule="evenodd"
+                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                        Edit
+                      </button>
+                    </Link>
+                  )}
 
-            {isNotOwner() && (
-              <button
-                className="pt-3 pb-2  text-white w-full mt-2 rounded-sm font-primary font-semibold text-xl flex 
-              justify-center items-baseline"
-                aria-label="cart-button"
-                onClick={addToCart}
-              >
-                Add To Cart
-              </button>
-            )}
+                  {isNotOwner() && (
+                    <button
+                      onClick={addToCart}
+                      type="button"
+                      className="py-2.5 px-5 text-sm font-medium text-gray-900 
+                       focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 
+                       focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 
+                       dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                      Add to Cart
+                    </button>
+                  )}
 
-            {isNotOwner() && (
-              <>
-                {!isEditing && (
-                  <div>
-                    <h3>Review this product</h3>
+                  {isNotOwner() && !isEditing && (
                     <button
                       onClick={editProduct}
-                      className=" text-white border border-palette-primary text-palette-primary text-lg 
-            font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light 
-            focus:outline-none w-full hover:bg-palette-lighter rounded-sm mb-5"
+                      type="button"
+                      className="py-2.5 px-5 text-sm font-medium
+                         text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 
+                         hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 
+                         dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     >
-                      Write a customer review
+                      Review
                     </button>
-                  </div>
-                )}
-
-                {isEditing && (
-                  <form onSubmit={handleCommentSubmit}>
-                    <label>Your comment:</label>
-                    <input
-                      type="text"
-                      name="comment"
-                      value={review.comment}
-                      onChange={handleTextChange}
-                      className="my-2"
-                    />
-                    <button
-                      type="submit"
-                      className=" text-white border my-3 border-palette-primary text-palette-primary text-lg 
-            font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light 
-            focus:outline-none w-full hover:bg-palette-lighter rounded-sm"
+                  )}
+                </div>
+                {isOwner() && (
+                  <button
+                    onClick={deleteProduct}
+                    type="button"
+                    className="inline-flex items-center text-white bg-red-600
+                     hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 
+                     text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900"
+                  >
+                    <svg
+                      className="w-5 h-5 mr-1.5 -ml-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      Post Review
-                    </button>
-                  </form>
+                      <path
+                        fillRule="evenodd"
+                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 
+                        100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 
+                        0 00-1-1z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                    Delete
+                  </button>
                 )}
-              </>
-            )}
-
-            {details && (
-              <div>
-                {details.comments &&
-                  details.comments
-                    .slice()
-                    .sort(
-                      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-                    )
-                    .map((comment) => (
-                      <EachComment
-                        key={comment._id}
-                        {...comment}
-                        getAllDetails={getAllDetails}
-                      />
-                    ))}
               </div>
-            )}
+            </div>
           </div>
         </div>
+      ) : (
+        <p>Loading</p>
       )}
-    </>
+
+
+      <div className =" w-96 mt-4">
+      {isEditing && (
+        <form onSubmit={handleCommentSubmit} className="mb-6">
+          <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <label for="comment" className="sr-only">
+              Your comment
+            </label>
+            <textarea
+              id="comment"
+              rows="6"
+              type="text"
+              name="comment"
+              onChange={handleTextChange}
+              className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 
+                dark:bg-gray-800"
+              placeholder="Write a comment..."
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 
+            focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+          >
+            Post comment
+          </button>
+        </form>
+      )}
+
+      {details && (
+        <div>
+          {details.comments &&
+            details.comments
+              .slice()
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .map((comment) => (
+                <EachComment
+                  key={comment._id}
+                  {...comment}
+                  getAllDetails={getAllDetails}
+                />
+              ))}
+        </div>
+      )}
+    </div>
+    </div>
   );
 };
 

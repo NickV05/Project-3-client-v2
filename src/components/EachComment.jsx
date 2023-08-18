@@ -36,9 +36,9 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
     return (
         <div >
             <p>{comment}</p>
-            <Link to={`/profile/${author._id}`}>
-            <p className ="mb-4 border-b-2 border-black leading-relaxed font-extrabold text-1xl text-palette-primary" >Author: {author.fullName}</p>
-
+            <Link to={`/profile/${author._id}`} className="inline">
+            <p className ="mb-4 border-b-2 border-black leading-relaxed font-extrabold text-1xl text-palette-primary" > 
+            <img src={author.image} className="h-12 w-12 rounded-full " /> {author.fullName}</p>
             </Link>
             {author._id === user._id && (
                 <div>
@@ -70,6 +70,10 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
                 </div>
             )}
         </div>
+
+                        
+
+
     );
 };
 
