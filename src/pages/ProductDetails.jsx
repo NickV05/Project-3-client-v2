@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { get, post } from "../services/authService";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import EachComment from "../components/EachComment";
@@ -12,6 +12,7 @@ const ProductDetails = () => {
   const { user } = useContext(AuthContext);
   const { cart, setCart, getCart } = useContext(CartContext);
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   const [review, setReview] = useState({
     comment: "",
