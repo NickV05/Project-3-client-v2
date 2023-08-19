@@ -44,14 +44,6 @@ function EditProductPage() {
       });
   };
 
-  const deleteProduct = () => {                    
-    post(`/items/delete-item/${productId}`)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((err) => console.log(err));
-  };  
-
   const handleFileChange = (e) => {
 
     setButtonDisabled(true)
@@ -128,11 +120,14 @@ const handleSelectionChange = (e) => {
             onChange={(e) => setName(e.target.value)}
           />
           </div>
-          <div className="relative mt-20 flex justify-center" data-te-input-wrapper-init>
+          <div className="relative mt-20 flex justify-center">
           <input
             type="file" 
             name="image" 
-            className="peer block min-h-[auto] w-3/4 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+            className="peer block w-3/4 rounded justify-center align-middle border-0 bg-transparent 
+            px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear 
+            focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none 
+            dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id="exampleFormControlInput33"
             onChange={handleFileChange} 
           />
