@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { post } from "../services/authService";
 
 import { fileChange } from "../services/fileChange";
+import { Link } from "react-router-dom";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -68,7 +69,6 @@ const AddProduct = () => {
 }
 
   return (
-
 <div
   id="defaultModal"
   tabIndex="-1"
@@ -80,6 +80,7 @@ const AddProduct = () => {
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           Add Product
         </h3>
+        <Link to="/">
         <button
           type="button"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -99,6 +100,7 @@ const AddProduct = () => {
           </svg>
           <span className="sr-only">Close modal</span>
         </button>
+        </Link>
       </div>
 
       <form onSubmit={handleAddProd}>
@@ -113,7 +115,7 @@ const AddProduct = () => {
               onChange={handleTextChange}
               type="text"
               name="name"
-              id="name"
+              value={product.name}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Type product name"
               required=""
@@ -137,8 +139,8 @@ const AddProduct = () => {
             <input
               onChange={handleNumberChange}
               type="number"
-              name="price"
-              id="price"
+              name="cost"
+              value={product.cost}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="2999"
               required=""
@@ -151,9 +153,13 @@ const AddProduct = () => {
               Category
             </label>
             <select
-              id="category"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            >
+                id="categoryType"
+                name="category"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 
+                block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 
+                dark:focus:border-primary-500"
+                onChange={handleSelectionChange}
+                >
               <option value="foodAndDrinks">Food & Drinks</option>
               <option value="clothes">Clothes</option>
               <option value="electronics">Electronics</option>
@@ -177,7 +183,8 @@ const AddProduct = () => {
             </label>
             <textarea
               onChange={handleTextChange}
-              id="description"
+              name="description"
+              value={product.description}
               rows="4"
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Write product description here"
