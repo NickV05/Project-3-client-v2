@@ -13,6 +13,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [updatedUser, setUpdatedUser] = useState(user);
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [following, setFollowing] = useState(false)
 
   const getUserInfo = () => {
     get(`/users/user-detail/${userId}`)
@@ -65,12 +66,25 @@ const Profile = () => {
     setEdit(true);
   };
 
+  const checkFolllow
+
+  const toFollow =() => {
+    const userProfileId = userProfile._id;
+    console.log("userProfileId to send ===>", userProfileId)
+    post(`/users/follow/${userProfileId}`)
+    .then((results) => {
+      console.log("Results ===>", results.data)
+      setFollowing(true)
+      setUser(results.data)
+    })
+  }
+
   useEffect(() => {
     getUserInfo();
     if (user) {
       setUpdatedUser(user);
     }
-  }, [user]);
+  }, [userId]);
 
   return (
     <div>
@@ -82,8 +96,8 @@ const Profile = () => {
                 <div class="grid grid-cols-1 md:grid-cols-3">
                   <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                     <div>
-                      <p class="font-bold text-gray-700 text-xl">22</p>
-                      <p class="text-gray-400">Friends</p>
+                      <p class="font-bold text-gray-700 text-xl">{userProfile.followers.length}</p>
+                      <p class="text-gray-400">Followers</p>
                     </div>
                     <div>
                       <p class="font-bold text-gray-700 text-xl">
@@ -92,8 +106,8 @@ const Profile = () => {
                       <p class="text-gray-400">Products</p>
                     </div>
                     <div>
-                      <p class="font-bold text-gray-700 text-xl">89</p>
-                      <p class="text-gray-400 ">Comments</p>
+                      <p class="font-bold text-gray-700 text-xl">{userProfile.follow.length}</p>
+                      <p class="text-gray-400 ">Follows</p>
                     </div>
                   </div>
                   <div class="relative">
@@ -112,9 +126,9 @@ const Profile = () => {
 
                   {user && user._id !== userId && (
                     <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                      <button class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                        Connect
-                      </button>
+                     {!following && <button onClick ={toFollow} class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                        + Follow
+                      </button>}
                       <button class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                         Message
                       </button>
