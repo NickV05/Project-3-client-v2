@@ -70,17 +70,21 @@ const Profile = () => {
     setEdit(true);
   };
 
-  const checkFolllow = () => {
-    const checking = userProfile.followers.map((follower) => follower._id == userId)
-    console.log("Checking ==>", checking)
+  const unFollow =() => {
+    post(`/users/unfollow/${userProfile._id}`)
+    .then((results) => {
+      console.log("unfollow ===>",results.data)
+      setFollowing(false)
+      setUser(results.data)
+    })
   }
 
+
   const toFollow =() => {
-    const userProfileId = userProfile._id;
-    console.log("userProfileId to send ===>", userProfileId)
-    post(`/users/follow/${userProfileId}`)
+    console.log("userProfileId to send ===>", userProfile._id)
+    post(`/users/follow/${userProfile._id}`)
     .then((results) => {
-      console.log("Results ===>", results.data)
+      console.log("Follow ===>", results.data)
       setFollowing(true)
       setUser(results.data)
     })
@@ -136,6 +140,11 @@ const Profile = () => {
                      {!following && <button onClick ={toFollow} class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                         + Follow
                       </button>}
+
+                      {following && <button onClick ={unFollow} class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-700 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                        Unfollow
+                      </button>}
+
                       <button class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                         Message
                       </button>

@@ -34,7 +34,7 @@ const Products = () => {
         <Sort setOrder={setOrder} />
       </div>
       {allProducts.length ? (
-        <div class="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+        <div className="py-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
           {!sorting
             ? allProducts.map((product) => (
                 <EachProduct key={product._id} {...product} />
