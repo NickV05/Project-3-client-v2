@@ -20,6 +20,10 @@ const Profile = () => {
       .then((userInfo) => {
         console.log("UserProfile:", userInfo.data);
         setUser(userInfo.data);
+        const checking = userInfo.data.followers.some((follower) => 
+        follower == user._id)
+        console.log("Checking ==>", checking)
+        setFollowing(checking)
       })
       .catch((error) => console.log(error));
   };
@@ -66,7 +70,10 @@ const Profile = () => {
     setEdit(true);
   };
 
-  const checkFolllow
+  const checkFolllow = () => {
+    const checking = userProfile.followers.map((follower) => follower._id == userId)
+    console.log("Checking ==>", checking)
+  }
 
   const toFollow =() => {
     const userProfileId = userProfile._id;
