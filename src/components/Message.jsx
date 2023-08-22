@@ -3,12 +3,6 @@ import { useContext } from "react";
 
 const Message = ({ creator, text, image, read }) => {
     const { user } = useContext(AuthContext);
-    console.log("Text ==>",text)
-    console.log("Creator ==>",creator)
-    console.log("User ==>",user)
-
-
-
   return (
     <>
     {creator && user && <>

@@ -1,18 +1,19 @@
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState, useEffect } from "react";
 import { get, post} from "../services/authService";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Message from "../components/Message";
 
 const Messenger = () => {
+    const navigate = useNavigate();
     const { userId } = useParams();
+    const [ adress, setAdress] = useState(userId);
     const { user, setUser } = useContext(AuthContext);
     const [ convo, setConvo] = useState();
     const [ message, setMessage] = useState("");
-    console.log("User ===>", user)
 
     const getConvo = () => {
-        get(`/users/get-convo/${userId}`)
+        get(`/users/get-convo/${adress}`)
         .then((results) => {
             console.log("Conversation ===>",results)
             setConvo(results.data.convo)
@@ -20,11 +21,19 @@ const Messenger = () => {
         })
     }
 
+    const goToConvo = (id) => {
+        setAdress(id)
+        navigate(`/messenger/${id}`)
+        get(`/users/get-convo/${id}`)
+        .then((results) => {
+            setConvo(results.data.convo)
+        })
+    }
+
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log("Sending message ===>",{ message: message })
-        post(`/users/send-message/${userId}`, { message: message })
+        post(`/users/send-message/${adress}`, { message: message })
         .then((results) => {
             console.log("Updated conversation/Created conversation ===>",results)
             setConvo(results.data.convo)
@@ -39,11 +48,11 @@ const Messenger = () => {
 
     useEffect(() => {
         getConvo();
-    },[userId], [convo], [message])
+    },[userId], [convo] )
 
 
   return (
-    <div class="flex antialiased text-gray-800">
+    <div class="flex antialiased pt-14 text-gray-800">
       {user && (
         <div class="flex flex-row w-full overflow-x-hidden">
           <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
@@ -67,11 +76,33 @@ const Messenger = () => {
               <div class="ml-2 font-bold text-2xl">MarketLink Messenger</div>
             </div>
             <div class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
-              <div class="h-20 w-20 rounded-full border overflow-hidden">
-                <img src={user.image} alt="Avatar" class="h-full w-full" />
-              </div>
-              <div class="text-sm font-semibold mt-2">{user.fullName}</div>
-              <div class="text-xs text-gray-500">You</div>
+              {convo && convo.userOne && convo.userTwo && (
+                <div class="h-20 w-20 rounded-full border overflow-hidden">
+                  {convo.userOne._id != user._id ? (
+                    <img
+                      src={convo.userOne.image}
+                      alt="Avatar"
+                      class="h-full w-full"
+                    />
+                  ) : (
+                    <img
+                      src={convo.userTwo.image}
+                      alt="Avatar"
+                      class="h-full w-full"
+                    />
+                  )}
+                </div>
+              )}
+
+              {convo && convo.userOne && convo.userTwo && (
+                <div class="text-sm font-semibold mt-2">
+                  {convo.userOne._id != user._id ? (
+                    <p>{convo.userOne.fullName}</p>
+                  ) : (
+                    <p>{convo.userTwo.fullName}</p>
+                  )}
+                </div>
+              )}
             </div>
             <div class="flex flex-col mt-3">
               <div class="flex flex-row items-center justify-between text-xs">
@@ -81,30 +112,53 @@ const Messenger = () => {
                 </span>
               </div>
               <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-
                 {user && user.conversations ? (
-                    user.conversations
+                  user.conversations
                     .slice()
                     .sort((a, b) => a.createdAt - b.createdAt)
                     .map((conversation) => (
-                        <button  class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-                        {conversation.userTwo && <div class="flex items-center justify-center h-8 w-8 bg-pink-200 rounded-full">
-                        {conversation.userOne._id != user._id ? <p>{conversation.userOne.fullName[0]}</p> :
-                        <p>{conversation.userTwo.fullName[0]}</p>}
-                        </div>}
-                        { conversation.userTwo && <div class="ml-2 text-sm font-semibold">
-                        {conversation.userOne._id != user._id ? <p>{conversation.userOne.fullName}</p> :
-                        <p>{conversation.userTwo.fullName}</p>}
-                        </div>}
-                      </button>
-                     
+                      <>
+                        {conversation.userOne && (
+                          <>
+                            {conversation.userOne._id != user._id ? (
+                              <button
+                                onClick={() =>
+                                  goToConvo(conversation.userOne._id)
+                                }
+                                class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
+                              >
+                                <div class="flex items-center justify-center h-8 w-8 bg-pink-200 rounded-full">
+                                  {conversation.userOne.fullName[0]}
+                                </div>
+                                <div class="ml-2 text-sm font-semibold">
+                                  <p>{conversation.userOne.fullName}</p>
+                                </div>
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() =>
+                                  goToConvo(conversation.userTwo._id)
+                                }
+                                class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
+                              >
+                                <div class="flex items-center justify-center h-8 w-8 bg-pink-200 rounded-full">
+                                  {conversation.userTwo.fullName[0]}
+                                </div>
+                                <div class="ml-2 text-sm font-semibold">
+                                  {conversation.userTwo.fullName}
+                                </div>
+                              </button>
+                            )}
+                          </>
+                        )}
+                      </>
                     ))
                 ) : (
                   <p className="text-center">No messages yet!</p>
                 )}
               </div>
 
-              <div class="flex flex-row items-center justify-between text-xs mt-6">
+              {/* <div class="flex flex-row items-center justify-between text-xs mt-6">
                 <span class="font-bold">Pinned</span>
                 <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
                   7
@@ -118,7 +172,7 @@ const Messenger = () => {
                   </div>
                   <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
 
