@@ -11,7 +11,8 @@ const Message = ({ creator, text, image, read }) => {
 
   return (
     <>
-    {!creator && !user && creator._id != user._id ?
+    {creator && user && <>
+    {creator._id != user._id ?
 
       <div class="col-start-1 col-end-8 p-3 rounded-lg">
         <div class="flex flex-row items-center">
@@ -40,6 +41,7 @@ const Message = ({ creator, text, image, read }) => {
         </div>
       </div>
     }
+    </>}
     </>
   );
 };
