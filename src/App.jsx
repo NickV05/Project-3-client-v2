@@ -11,6 +11,7 @@ import EditProductPage from "./pages/EditProductPage";
 import Profile from "./pages/Profile";
 import Success from "./pages/Success";
 import CancelPayment from "./pages/CancelPayment";
+import Messenger from "./pages/Messenger";
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
         <Route path="/profile/:userId" element={ <Profile /> } />
         <Route path="/success" element={ <Success /> } />
         <Route path="/cancel" element={<CancelPayment />} />
+        <Route path ="/messenger/:userId" element={<Messenger/>}/>
+        
 
         </Route>
 

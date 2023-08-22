@@ -7,7 +7,7 @@ import { fileChange } from '../services/fileChange'
 
 const Profile = () => {
   const [userProfile, setUser] = useState(null);
-  const { user, storeToken } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { userId } = useParams();
   const [editing, setEdit] = useState(false);
   const navigate = useNavigate();
@@ -102,33 +102,33 @@ const Profile = () => {
       {userProfile && (
         <div>
           {!editing && (
-            <div class=" p-11">
-              <div class="p-6 bg-white shadow mt-24">
-                <div class="grid grid-cols-1 md:grid-cols-3">
-                  <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
+            <div className=" p-11">
+              <div className="p-6 bg-white shadow mt-24">
+                <div className="grid grid-cols-1 md:grid-cols-3">
+                  <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                     <div>
-                      <p class="font-bold text-gray-700 text-xl">{userProfile.followers.length}</p>
-                      <p class="text-gray-400">Followers</p>
+                      <p className="font-bold text-gray-700 text-xl">{userProfile.followers.length}</p>
+                      <p className="text-gray-400">Followers</p>
                     </div>
                     <div>
-                      <p class="font-bold text-gray-700 text-xl">
+                      <p className="font-bold text-gray-700 text-xl">
                         {userProfile.listedItems.length}
                       </p>
-                      <p class="text-gray-400">Products</p>
+                      <p className="text-gray-400">Products</p>
                     </div>
                     <div>
-                      <p class="font-bold text-gray-700 text-xl">{userProfile.follow.length}</p>
-                      <p class="text-gray-400 ">Follows</p>
+                      <p className="font-bold text-gray-700 text-xl">{userProfile.follow.length}</p>
+                      <p className="text-gray-400 ">Follows</p>
                     </div>
                   </div>
-                  <div class="relative">
+                  <div className="relative">
                     <div
-                      class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center
+                      className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center
        text-indigo-500"
                     >
                       <img
                         src={userProfile.image}
-                        class="h-48 w-48 rounded-full"
+                        className="h-48 w-48 rounded-full"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       />
@@ -136,26 +136,28 @@ const Profile = () => {
                   </div>
 
                   {user && user._id !== userId && (
-                    <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                     {!following && <button onClick ={toFollow} class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                    <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                     {!following && <button onClick ={toFollow} className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                         + Follow
                       </button>}
 
-                      {following && <button onClick ={unFollow} class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-700 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                      {following && <button onClick ={unFollow} className="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-700 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                         Unfollow
                       </button>}
-
-                      <button class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                      <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                      <Link to= {`/messenger/${userId}`}>
                         Message
+                      </Link>
                       </button>
+
                     </div>
                   )}
 
                   {user && user._id === userId && (
-                    <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                    <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
                       <button
                         onClick={editProfile}
-                        class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                        className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                       >
                         Edit info
                       </button>
@@ -163,16 +165,16 @@ const Profile = () => {
                   )}
                 </div>
 
-                <div class="mt-20 text-center border-b pb-12">
-                  <h1 class="text-4xl font-medium text-gray-700">
+                <div className="mt-20 text-center border-b pb-12">
+                  <h1 className="text-4xl font-medium text-gray-700">
                     {userProfile.fullName}
                   </h1>
-                  <p class="font-light text-gray-600 mt-3">
+                  <p className="font-light text-gray-600 mt-3">
                     {userProfile.location}
                   </p>
                 </div>
 
-                <div class=" py-6 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-4">
+                <div className=" py-6 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-4">
                   {userProfile.listedItems.length ? (
                     userProfile.listedItems.map((item) => {
                       console.log("Profile item:", item);

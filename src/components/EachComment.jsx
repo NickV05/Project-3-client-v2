@@ -39,42 +39,6 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
     }
 
     return (
-      // <div >
-      //     <p>{comment}</p>
-      //     <Link to={`/profile/${author._id}`} className="inline">
-      //     <p className ="mb-4 border-b-2 border-black leading-relaxed font-extrabold text-1xl text-palette-primary" >
-      //     <img src={author.image} className="h-12 w-12 rounded-full " /> {author.fullName}</p>
-      //     </Link>
-      //     {author._id === user._id && (
-      //         <div>
-      //             <button onClick={deleteReview} className=" text-white border my-3 border-palette-primary text-palette-primary text-lg
-      //     font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light
-      //     focus:outline-none w-full hover:bg-palette-lighter rounded-sm">Delete review</button>
-
-      //             {!editing && <button onClick={editReview} className=" text-white border my-3 border-palette-primary text-palette-primary text-lg
-      //     font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light
-      //     focus:outline-none w-full hover:bg-palette-lighter rounded-sm">Edit review</button>}
-
-      //             {editing && (
-      //                 <div>
-      //                     <form onSubmit={handleFormSubmit}>
-      //                         <label>Edit Your review:</label>
-      //                         <input
-      //                             type="text"
-      //                             name="comment"
-      //                             value={editedComment}
-      //                             onChange={(e) => setEditedComment(e.target.value)}
-      //                         />
-
-      //     <button type="submit" className=" text-white border my-3 border-palette-primary text-palette-primary text-lg
-      //     font-primary font-semibold pt-2 pb-1 leading-relaxed flex justify-center items-center focus:ring-1 focus:ring-palette-light
-      //     focus:outline-none w-full hover:bg-palette-lighter rounded-sm">Submit</button>
-      //                     </form>
-      //                 </div>
-      //             )}
-      //         </div>
-      //     )}
-      // </div>
 
       <section class="bg-white dark:bg-gray-900 py-8 lg:py-16">
         <div class="max-w-2xl mx-auto px-4">
