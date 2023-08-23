@@ -224,7 +224,7 @@ const Messenger = () => {
                     <img
                       src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1692827653/project3/message_arsqdr.png"
                       alt="No messages"
-                      className = "h-1/3 w-1/3 mt-44 ml-56 opacity-40"
+                      className = "h-2/3 w-1/3 mt-28 ml-96 opacity-40"
                     />
                   )}
                 </div>
