@@ -7,7 +7,7 @@ import { fileChange } from '../services/fileChange'
 
 const Profile = () => {
   const [userProfile, setUser] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { user, authenticateUser } = useContext(AuthContext);
   const { userId } = useParams();
   const [editing, setEdit] = useState(false);
   const navigate = useNavigate();
@@ -20,10 +20,12 @@ const Profile = () => {
       .then((userInfo) => {
         console.log("UserProfile:", userInfo.data);
         setUser(userInfo.data);
-        const checking = userInfo.data.followers.some((follower) => 
-        follower == user._id)
-        console.log("Checking ==>", checking)
-        setFollowing(checking)
+        if(user){
+          const checking = userInfo.data.followers.some((follower) => 
+          follower == user._id)
+          console.log("Checking ==>", checking)
+          setFollowing(checking)
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -91,6 +93,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
+    authenticateUser();
     getUserInfo();
     if (user) {
       setUpdatedUser(user);

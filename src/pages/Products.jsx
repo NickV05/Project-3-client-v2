@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext  } from "react";
 import { get } from "../services/authService";
 import EachProduct from "../components/EachProduct";
 import SearchBar from "../components/SearchBar";
 import Filter from "../components/Filter";
 import Sort from "../components/Sort";
+import { AuthContext } from "../context/auth.context";
 
 const Products = () => {
   const [allProducts, setMarket] = useState([]);
   const [sorting, setOrder] = useState("");
+  const { isLoading } = useContext(AuthContext);
 
   const getAllProducts = () => {
     get("/items")
@@ -63,9 +65,11 @@ const Products = () => {
             : null}
         </div>
       ) : (
-        <div className="flex justify-center ml-9 font-bold mt-56 text-2xl">
-          No items were found
+
+        <div className="flex justify-center ml-9 font-bold mt-56">
+          <img src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1691760277/project3/spinner_jtv0k4.gif"/>
         </div>
+
       )}
     </div>
   );

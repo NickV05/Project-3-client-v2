@@ -1,8 +1,9 @@
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState, useEffect } from "react";
 import { get, post} from "../services/authService";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Message from "../components/Message";
+import { fileChange } from '../services/fileChange'
 
 const Messenger = () => {
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Messenger = () => {
     const { user, setUser } = useContext(AuthContext);
     const [ convo, setConvo] = useState();
     const [ message, setMessage] = useState("");
+    
 
     const getConvo = () => {
         get(`/users/get-convo/${adress}`)
@@ -29,6 +31,8 @@ const Messenger = () => {
             setConvo(results.data.convo)
         })
     }
+
+
 
 
     const handleFormSubmit = (e) => {
@@ -97,9 +101,13 @@ const Messenger = () => {
               {convo && convo.userOne && convo.userTwo && (
                 <div class="text-sm font-semibold mt-2">
                   {convo.userOne._id != user._id ? (
+                    <Link to ={`/profile/${convo.userOne._id}`}>
                     <p>{convo.userOne.fullName}</p>
+                    </Link>
                   ) : (
+                    <Link to ={`/profile/${convo.userTwo._id}`}>
                     <p>{convo.userTwo.fullName}</p>
+                    </Link>
                   )}
                 </div>
               )}
@@ -133,6 +141,8 @@ const Messenger = () => {
                                 <div class="ml-2 text-sm font-semibold">
                                   <p>{conversation.userOne.fullName}</p>
                                 </div>
+
+
                               </button>
                             ) : (
                               <button
@@ -147,6 +157,8 @@ const Messenger = () => {
                                 <div class="ml-2 text-sm font-semibold">
                                   {conversation.userTwo.fullName}
                                 </div>
+
+
                               </button>
                             )}
                           </>
@@ -176,7 +188,7 @@ const Messenger = () => {
             </div>
           </div>
 
-          <div class="flex flex-col flex-auto h-full p-6">
+          <div class="flex flex-col flex-auto h-screen p-6">
             <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
               <div class="flex flex-col h-full overflow-x-auto mb-4">
                 <div class="flex flex-col h-full">
@@ -198,24 +210,34 @@ const Messenger = () => {
                 onSubmit={handleFormSubmit}
                 class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
               >
-                <div>
-                  <button class="flex items-center bg-white justify-center text-gray-400 hover:text-gray-600 hover:bg-white">
+                {/* <div>
+                  <label
+                    htmlFor="exampleFormControlInput33"
+                    className="flex items-center bg-white justify-center text-gray-400 hover:text-gray-600 hover:bg-white"
+                  >
                     <svg
-                      class="w-5 h-5"
+                      className="w-5 h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
                       ></path>
                     </svg>
-                  </button>
-                </div>
+                    <input
+                    className ="hidden"
+                      type="file"
+                      name="image"
+                      id="exampleFormControlInput33"
+                    //   onChange={handleFileChange}
+                    />
+                  </label>
+                </div> */}
 
                 <div class="flex-grow ml-4">
                   <div class="relative w-full">
