@@ -1,59 +1,66 @@
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState, useEffect } from "react";
-import { get, post} from "../services/authService";
+import { get, post } from "../services/authService";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Message from "../components/Message";
-import { fileChange } from '../services/fileChange'
+import { fileChange } from "../services/fileChange";
 
 const Messenger = () => {
-    const navigate = useNavigate();
-    const { userId } = useParams();
-    const [ adress, setAdress] = useState(userId);
-    const { user, setUser } = useContext(AuthContext);
-    const [ convo, setConvo] = useState();
-    const [ message, setMessage] = useState("");
-    
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const [adress, setAdress] = useState(userId);
+  const { user, setUser } = useContext(AuthContext);
+  const [convo, setConvo] = useState();
+  const [message, setMessage] = useState("");
+  const [anotherUser, setAnother] = useState(null);
 
-    const getConvo = () => {
-        get(`/users/get-convo/${adress}`)
-        .then((results) => {
-            console.log("Conversation ===>",results)
-            setConvo(results.data.convo)
-            setUser(results.data.myUser)
-        })
-    }
+  const getConvo = () => {
+    get(`/users/get-convo/${adress}`).then((results) => {
+      console.log("Conversation ===>", results);
+      setConvo(results.data.convo);
+      setUser(results.data.myUser);
+    });
+  };
 
-    const goToConvo = (id) => {
-        setAdress(id)
-        navigate(`/messenger/${id}`)
-        get(`/users/get-convo/${id}`)
-        .then((results) => {
-            setConvo(results.data.convo)
-        })
-    }
+  const getUserInfo = () => {
+    get(`/users/user-detail/${adress}`).then((results) => {
+      console.log("Conversation with: ===>", results.data);
+      setAnother(results.data);
+    });
+  };
 
+  const goToConvo = (id) => {
+    setAdress(id);
+    navigate(`/messenger/${id}`);
+    get(`/users/get-convo/${id}`).then((results) => {
+      setConvo(results.data.convo);
+    });
+  };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    post(`/users/send-message/${adress}`, { message: message }).then(
+      (results) => {
+        console.log("Updated conversation/Created conversation ===>", results);
+        setConvo(results.data.convo);
+        setUser(results.data.user);
+        setMessage("");
+      }
+    );
+  };
 
+  const sendMessage = (e) => {
+    setMessage(e.target.value);
+  };
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        post(`/users/send-message/${adress}`, { message: message })
-        .then((results) => {
-            console.log("Updated conversation/Created conversation ===>",results)
-            setConvo(results.data.convo)
-            setUser(results.data.user)
-            setMessage("")
-        })
-    };
-
-    const sendMessage = (e) => {
-    setMessage(e.target.value)
-}
-
-    useEffect(() => {
-        getConvo();
-    },[userId], [convo] )
-
+  useEffect(
+    () => {
+      getUserInfo();
+      getConvo();
+    },
+    [userId],
+    [convo]
+  );
 
   return (
     <div class="flex antialiased pt-14 text-gray-800">
@@ -80,7 +87,7 @@ const Messenger = () => {
               <div class="ml-2 font-bold text-2xl">MarketLink Messenger</div>
             </div>
             <div class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
-              {convo && convo.userOne && convo.userTwo && (
+              {convo && convo.userOne && convo.userTwo ? (
                 <div class="h-20 w-20 rounded-full border overflow-hidden">
                   {convo.userOne._id != user._id ? (
                     <img
@@ -96,19 +103,35 @@ const Messenger = () => {
                     />
                   )}
                 </div>
+              ) : (
+                <div class="h-20 w-20 rounded-full border overflow-hidden">
+                  {anotherUser && (
+                    <img
+                      src={anotherUser.image}
+                      alt="Avatar"
+                      class="h-full w-full"
+                    />
+                  )}
+                </div>
               )}
 
-              {convo && convo.userOne && convo.userTwo && (
+              {convo && convo.userOne && convo.userTwo ? (
                 <div class="text-sm font-semibold mt-2">
                   {convo.userOne._id != user._id ? (
-                    <Link to ={`/profile/${convo.userOne._id}`}>
-                    <p>{convo.userOne.fullName}</p>
+                    <Link to={`/profile/${convo.userOne._id}`}>
+                      <p>{convo.userOne.fullName}</p>
                     </Link>
                   ) : (
-                    <Link to ={`/profile/${convo.userTwo._id}`}>
-                    <p>{convo.userTwo.fullName}</p>
+                    <Link to={`/profile/${convo.userTwo._id}`}>
+                      <p>{convo.userTwo.fullName}</p>
                     </Link>
                   )}
+                </div>
+              ) : (
+                <div class="text-sm font-semibold mt-2">
+                <Link to={`/profile/${adress}`}>
+                  {anotherUser && <p>{anotherUser.fullName}</p>}
+                  </Link>
                 </div>
               )}
             </div>
@@ -141,8 +164,6 @@ const Messenger = () => {
                                 <div class="ml-2 text-sm font-semibold">
                                   <p>{conversation.userOne.fullName}</p>
                                 </div>
-
-
                               </button>
                             ) : (
                               <button
@@ -157,8 +178,6 @@ const Messenger = () => {
                                 <div class="ml-2 text-sm font-semibold">
                                   {conversation.userTwo.fullName}
                                 </div>
-
-
                               </button>
                             )}
                           </>
@@ -191,19 +210,23 @@ const Messenger = () => {
           <div class="flex flex-col flex-auto h-screen p-6">
             <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
               <div class="flex flex-col h-full overflow-x-auto mb-4">
-                <div class="flex flex-col h-full">
-                  <div class="grid grid-cols-12 gap-y-2">
-                    {convo && convo.message ? (
-                      convo.message
+                <div className="flex flex-col h-full">
+                  {convo && convo.message ? (
+                    <div className="grid grid-cols-12 gap-y-2">
+                      {convo.message
                         .slice()
                         .sort((a, b) => b.createdAt - a.createdAt)
                         .map((message) => (
                           <Message key={message._id} {...message} />
-                        ))
-                    ) : (
-                      <p className="text-center">No messages yet!</p>
-                    )}
-                  </div>
+                        ))}
+                    </div>
+                  ) : (
+                    <img
+                      src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1692827653/project3/message_arsqdr.png"
+                      alt="No messages"
+                      className = "h-1/3 w-1/3 mt-44 ml-56 opacity-40"
+                    />
+                  )}
                 </div>
               </div>
               <form
@@ -280,6 +303,6 @@ const Messenger = () => {
       )}
     </div>
   );
-}
+};
 
-export default Messenger
+export default Messenger;
