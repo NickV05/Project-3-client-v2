@@ -3,10 +3,11 @@ import { get } from "../services/authService";
 import { useContext, useEffect } from "react";
 import { CartContext } from "../context/cart.context";
 const Success = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const deleteCart = () => {
     console.log("Cart after checkout ===>", cart);
     get("/stripe/delete-cart");
+    setCart(null)
   };
 
   useEffect(() => {

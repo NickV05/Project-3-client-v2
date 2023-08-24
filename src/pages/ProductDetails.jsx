@@ -133,6 +133,9 @@ const ProductDetails = () => {
               <div className="flex justify-between mb-4 rounded-t sm:mb-5">
                 <div className="text-lg text-gray-900 md:text-xl dark:text-white">
                   <h3 className="font-semibold ">{details.name}</h3>
+                  <Link to={`/profile/${details.owner._id}`}>
+                  <h3 className="font-semibold ">By: {details.owner.fullName}</h3>
+                  </Link>
                   <p className="font-bold">
                     {details.cost
                       .toString()

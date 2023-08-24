@@ -6,7 +6,9 @@ const EachProduct = ({ cost, name, _id, owner, image}) => {
     return (
       <div className="h-90 w-72 rounded shadow-lg mx-auto border border-palette-lighter">
           <div className="h-62 border-b-2 border-palette-lighter relative">
+          <Link to={`/product-details/${_id}`}>
           <img src={image} alt="productImage" className="transform duration-500 ease-in-out hover:scale-110 h-auto w-auto " />
+          </Link>
           </div>
 
         <div className="h-48 relative">
