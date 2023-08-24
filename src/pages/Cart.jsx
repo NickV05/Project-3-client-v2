@@ -8,12 +8,15 @@ const Cart = () => {
 
   const [groupedItems, setGroupedItems] = useState({})
 
-  console.log("in Cart", cart);
+  console.log("in Cart 1", cart);
   const navigate = useNavigate();
   const cartId = cart?._id;
 
   const formatNumber = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    console.log("Number ===>", number)
+    if(number){
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
   }
 
 
@@ -21,6 +24,7 @@ const Cart = () => {
 
     if (cart && !cart.message) {
 
+      console.log("Cart for grouping ===>", cart)
       const theseItems = cart.items.reduce((groupedItems, item) => {
         if (!groupedItems[item._id]) {
           groupedItems[item._id] = {
@@ -38,9 +42,7 @@ const Cart = () => {
 
     }
 
-    
-
-    console.log("in Cart", cart);
+    console.log("in Cart 2", cart);
 }, [cart])
 
 
@@ -91,7 +93,17 @@ const Cart = () => {
           });
   }
 
-  
+  const increaseItem = (_id) => {
+    post(`/cart/increase-item/${_id}`, cartId)
+        .then((response) => {
+          console.log("Updated cart ===>", response.data);
+          setCart(response.data);
+          navigate("/cart")
+        })
+        .catch((error) =>{
+          console.log("Error",error)
+        })
+  }
 
   return (
     <div class = "flex justify-center align-middle mt-28 w-full">
@@ -110,8 +122,8 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-palette-lighter">
-                {Object.values(groupedItems).map((groupedItem) => {
-                  const { _id, name, cost, quantity, image } = groupedItem;
+                {Object.values(groupedItems).map((item) => {
+                  const { _id, name, cost, quantity, image } = item;
                   return (
                     <tr key={_id} className="text-sm sm:text-base text-gray-600 text-center">
                       <td className="font-primary font-medium px-4 sm:px-6 py-4 flex items-center">
@@ -127,6 +139,7 @@ const Cart = () => {
                       <td className="font-primary font-medium px-4 sm:px-6 py-4">{quantity}</td>
                       <td>
                         <button onClick={() => decreaseItem(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Decrease amount</button>
+                        <button onClick={() => increaseItem(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Increase amount</button>
                         <button onClick={() => deleteFromCart(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Remove item</button>
                       </td>
                     </tr>
@@ -134,12 +147,12 @@ const Cart = () => {
                 })}
               </tbody>
             </table>
-            <div class = "flex flex-col justify-center align-middle">
+            {cart.subtotal && cart.total && <div class = "flex flex-col justify-center align-middle">
             <p class ="text-center">Subtotal: $ {formatNumber(cart.subtotal)} </p>
             <p class ="text-center">Tax: 8%</p>
             <p class ="text-center">Total: $ {formatNumber(cart.total)} </p>
             <button class ="w-1/3 ml-64 font-primary font-medium px-4 sm:px-6 py-2 text-white" onClick={proceedToPayment}>Proceed to checkout</button>
-            </div>
+            </div>}
           </div>
         ) : (
           <div>Your cart is empty</div>
