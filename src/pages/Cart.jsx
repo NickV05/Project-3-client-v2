@@ -79,9 +79,6 @@ const Cart = () => {
     post(`/cart/decrease-item/${_id}`, cartId)
           .then((response) => {
               console.log("Updated cart:", response.data);
-              if(!response.data.items.length){
-                setCart(null)
-              }
               setCart(response.data)
               navigate("/cart");
           })
@@ -104,7 +101,7 @@ const Cart = () => {
 
   return (
 <>
-  {cart && !cart.message ? <div class="container p-8 mx-auto mt-12">
+  {cart && cart.items && !cart.message ? <div class="container p-8 mx-auto mt-12">
   <div class="w-full overflow-x-auto">
     <div class="my-2">
       <h3 class="text-xl font-bold tracking-wider">Shopping Cart </h3>
