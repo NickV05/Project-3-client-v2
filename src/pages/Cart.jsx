@@ -7,7 +7,7 @@ const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
 
   const [groupedItems, setGroupedItems] = useState({})
-
+  
   console.log("in Cart 1", cart);
   const navigate = useNavigate();
   const cartId = cart?._id;
@@ -66,9 +66,6 @@ const Cart = () => {
       post(`/cart/remove-item/${_id}`, cartId)
           .then((response) => {
               console.log("Updated cart:", response.data);
-              if(!response.data.items.length){
-                setCart(null)
-              }
               setCart(response.data)
               navigate("/cart");
           })
@@ -106,65 +103,165 @@ const Cart = () => {
   }
 
   return (
-    <div class = "flex justify-center align-middle mt-28 w-full">
-    {cart && !cart.message ? (
-      <>
-        {cart.items.length ? (
-          <div >
-            <table className="mx-auto">
-              <thead>
-                <tr className="uppercase text-xs sm:text-sm text-palette-primary border-b border-palette-light">
-                  <th className="font-primary font-normal px-6 py-4">Product</th>
-                  <th className="font-primary font-normal px-6 py-4">Image</th>
-                  <th className="font-primary font-normal px-6 py-4">Price</th>
-                  <th className="font-primary font-normal px-6 py-4">Quantity</th>
-                  <th className="font-primary font-normal px-6 py-4">Adjust changes</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-palette-lighter">
-                {Object.values(groupedItems).map((item) => {
+<>
+  {cart && !cart.message ? <div class="container p-8 mx-auto mt-12">
+  <div class="w-full overflow-x-auto">
+    <div class="my-2">
+      <h3 class="text-xl font-bold tracking-wider">Shopping Cart </h3>
+    </div>
+    <table class="w-full shadow-inner">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="px-6 py-3 font-bold whitespace-nowrap">Image</th>
+          <th class="px-6 py-3 font-bold whitespace-nowrap">Product</th>
+          <th class="px-6 py-3 font-bold whitespace-nowrap">Qty</th>
+          <th class="px-6 py-3 font-bold whitespace-nowrap">Price</th>
+          <th class="px-6 py-3 font-bold whitespace-nowrap">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+      {Object.values(groupedItems).map((item) => {
                   const { _id, name, cost, quantity, image } = item;
-                  return (
-                    <tr key={_id} className="text-sm sm:text-base text-gray-600 text-center">
-                      <td className="font-primary font-medium px-4 sm:px-6 py-4 flex items-center">
-                        <Link to={`/product-details/${_id}`}>
-                          <h3 className="pt-1 hover:text-palette-dark">{name}</h3>
-                        </Link>
-                      </td>
-                      <td>
-                        <img src={image} alt="productImage" height={64}
-                  width={64} />
-                      </td>
-                      <td className="font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell">${formatNumber(cost)}</td>
-                      <td className="font-primary font-medium px-4 sm:px-6 py-4">{quantity}</td>
-                      <td>
-                        <button onClick={() => decreaseItem(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Decrease amount</button>
-                        <button onClick={() => increaseItem(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Increase amount</button>
-                        <button onClick={() => deleteFromCart(_id)} className="font-primary font-medium px-4 sm:px-6 py-4 text-white">Remove item</button>
-                      </td>
-                    </tr>
-                  );
+                  return (             
+        <tr key={_id}>
+          <td>
+            <div class="flex justify-center">
+              <img
+                src={image}
+                class="object-cover h-28 w-28 rounded-2xl"
+                alt="image"
+              />
+            </div>
+          </td>
+          <td class="p-4 px-6 text-center whitespace-nowrap">
+            <div class="flex flex-col items-center justify-center">
+            <Link to={`/product-details/${_id}`}>
+              <h3>{name}</h3>
+              </Link>
+            </div>
+          </td>
+          <td class="p-4 px-6 text-center whitespace-nowrap">
+            <div>
+              <button onClick={() => decreaseItem(_id)} className =" bg-white hover:bg-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="inline-flex w-6 h-6 text-red-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+
+              <input
+                type="text"
+                name="qty"
+                value={quantity}
+                class="w-12 text-center bg-gray-100 outline-none"
+              />
+              
+              <button onClick={() => increaseItem(_id)} className =" bg-white hover:bg-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="inline-flex w-6 h-6 text-green-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </td>
+          <td class="p-4 px-6 text-center whitespace-nowrap">$ {formatNumber(cost)}</td>
+          <td class="p-4 px-6 text-center whitespace-nowrap">
+            <button onClick={() => deleteFromCart(_id)} className =" bg-white hover:bg-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-red-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                />
+              </svg>
+            </button>
+          </td>
+        </tr>
+        );
                 })}
-              </tbody>
-            </table>
-            {cart.subtotal && cart.total && <div class = "flex flex-col justify-center align-middle">
-            <p class ="text-center">Subtotal: $ {formatNumber(cart.subtotal)} </p>
-            <p class ="text-center">Tax: 8%</p>
-            <p class ="text-center">Total: $ {formatNumber(cart.total)} </p>
-            <button class ="w-1/3 ml-64 font-primary font-medium px-4 sm:px-6 py-2 text-white" onClick={proceedToPayment}>Proceed to checkout</button>
-            </div>}
-          </div>
-        ) : (
-          <div>Your cart is empty</div>
-        )}
-      </>
-    ) : (
-      <h2>{cart?.message}</h2>
-    )}
+        
+      </tbody>
+    </table>
+    
+    <div class="mt-4">
+      <div class="py-4 rounded-md shadow">
+        <h3 class="text-xl font-bold text-blue-600">Order Summary</h3>
+        <div class="flex justify-between px-4">
+          <span class="font-bold">Subtotal</span>
+          {cart && cart.subtotal ? <span class="font-bold">$ {formatNumber(cart.subtotal.toFixed(2))}</span> 
+          : <span class="font-bold">$ 0 </span>}
+        </div>
+ 
+        <div class="flex justify-between px-4">
+          <span class="font-bold">Sales Tax</span>
+          {cart && cart.subtotal ? <span class="font-bold">$ {(cart.subtotal * 0.08).toFixed(2)}</span>
+          :<span class="font-bold">$ 0</span>}   
+        </div>
+        <div
+          class="
+            flex
+            items-center
+            justify-between
+            px-4
+            py-2
+            mt-3
+            border-t-2
+          "
+        >
+          <span class="text-xl font-bold">Total</span>
+          {cart && cart.total ? <span class="text-2xl font-bold">$ {formatNumber(cart.total)}</span>
+          : <span class=" text-2xl font-bold">$ 0 </span>}
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <button
+        onClick={proceedToPayment}
+        class="
+          w-full
+          py-2
+          text-center text-white
+          bg-blue-500
+          rounded-md
+          shadow
+          hover:bg-blue-600
+        "
+      >
+        Proceed to Checkout
+      </button>
+    </div>
   </div>
-
-  
-
+</div> : <div className =" h-full flex justify-center">
+<img src ="https://res.cloudinary.com/dyto7dlgt/image/upload/v1692911525/project3/empty_cart_kgfei1.png" className =" h-96 w-auto mt-32"/>
+</div>}
+</>
 
 );
 
