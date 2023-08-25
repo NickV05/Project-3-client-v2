@@ -3,7 +3,6 @@ import { useContext, useState, useEffect } from "react";
 import { get, post } from "../services/authService";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Message from "../components/Message";
-import { fileChange } from "../services/fileChange";
 
 const Messenger = () => {
   const navigate = useNavigate();
@@ -15,18 +14,21 @@ const Messenger = () => {
   const [anotherUser, setAnother] = useState(null);
 
   const getConvo = () => {
-    get(`/users/get-convo/${adress}`).then((results) => {
-      console.log("Conversation ===>", results);
-      setConvo(results.data.convo);
-      setUser(results.data.myUser);
-    });
+
+      get(`/users/get-convo/${adress}`).then((results) => {
+        console.log("Conversation ===>", results);
+        setConvo(results.data.convo);
+        setUser(results.data.myUser);
+      });
   };
 
   const getUserInfo = () => {
-    get(`/users/user-detail/${adress}`).then((results) => {
-      console.log("Conversation with: ===>", results.data);
-      setAnother(results.data);
-    });
+    
+      get(`/users/user-detail/${adress}`).then((results) => {
+        console.log("Conversation with: ===>", results.data);
+        setAnother(results.data);
+      });
+    
   };
 
   const goToConvo = (id) => {
@@ -53,8 +55,7 @@ const Messenger = () => {
     setMessage(e.target.value);
   };
 
-  useEffect(
-    () => {
+  useEffect( () => {
       getUserInfo();
       getConvo();
     },
@@ -130,7 +131,8 @@ const Messenger = () => {
               ) : (
                 <div class="text-sm font-semibold mt-2">
                 <Link to={`/profile/${adress}`}>
-                  {anotherUser && <p>{anotherUser.fullName}</p>}
+                  {anotherUser && anotherUser._id != user._id && <p>{anotherUser.fullName}</p>}
+                  {anotherUser && anotherUser._id == user._id && <p>You</p>}
                   </Link>
                 </div>
               )}
@@ -142,7 +144,7 @@ const Messenger = () => {
                   {user.conversations.length}
                 </span>
               </div>
-              <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
+              <div class="flex flex-col space-y-1 mt-4 -mx-2 h-96 overflow-y-auto">
                 {user && user.conversations ? (
                   user.conversations
                     .slice()
@@ -221,15 +223,18 @@ const Messenger = () => {
                         ))}
                     </div>
                   ) : (
-                    <img
+                    <>
+                    {anotherUser && anotherUser._id != user._id ? <img
                       src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1692827653/project3/message_arsqdr.png"
                       alt="No messages"
                       className = "h-2/3 w-1/3 mt-28 ml-96 opacity-40"
-                    />
+                    /> : <div className = "flex justify-center align-middle">
+                    <p className = "h-2/3 w-1/3 mt-80 ml-40 opacity-40 text-2xl">Select a chat to start messaging</p> </div>}
+                    </>
                   )}
                 </div>
               </div>
-              <form
+              {anotherUser && anotherUser._id != user._id && <form
                 onSubmit={handleFormSubmit}
                 class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
               >
@@ -296,7 +301,7 @@ const Messenger = () => {
                     </svg>
                   </span>
                 </button>
-              </form>
+              </form>}
             </div>
           </div>
         </div>
