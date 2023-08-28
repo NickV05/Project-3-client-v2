@@ -34,7 +34,7 @@ const AddProduct = () => {
     post("/items/new-item", product)
       .then((response) => {
         console.log("New Product", response.data);
-        navigate("/");
+        navigate("products");
       })
       .catch((error) => {
         console.log("Error", error);
@@ -80,7 +80,7 @@ const AddProduct = () => {
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           Add Product
         </h3>
-        <Link to="/">
+        <Link to="/products">
         <button
           type="button"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"

@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Success from "./pages/Success";
 import CancelPayment from "./pages/CancelPayment";
 import Messenger from "./pages/Messenger";
+import HomePage from "./pages/HomePage";
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
  
       <Routes>      
         <Route element={<LoggedIn />}>
-        <Route path="/" element={ <Products /> } />
+        <Route path="/products" element={ <Products /> } />
         <Route path="/cart" element={ <Cart /> } />
         <Route path="/add-product" element={ <AddProduct /> } />
         <Route path="/product-details/:productId" element={ <ProductDetails /> } />
@@ -44,7 +45,7 @@ function App() {
         <Route path="/success" element={ <Success /> } />
         <Route path="/cancel" element={<CancelPayment />} />
         <Route path ="/messenger/:userId" element={<Messenger/>}/>
-        
+        <Route path ="/" element={<HomePage/>}/>
 
         </Route>
 

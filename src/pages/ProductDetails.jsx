@@ -61,7 +61,7 @@ const ProductDetails = () => {
   const deleteProduct = () => {
     post(`/items/delete-item/${productId}`)
       .then(() => {
-        navigate("/");
+        navigate("/products");
       })
       .catch((err) => console.log(err));
   };
@@ -145,7 +145,7 @@ const ProductDetails = () => {
                   <img src={details.image} />
                 </div>
                 <div>
-                  <Link to="/">
+                  <Link to="/products">
                     <button
                       type="button"
                       className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg 
