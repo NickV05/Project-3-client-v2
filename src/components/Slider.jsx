@@ -25,13 +25,12 @@ const Slider = () => {
         getAllProducts();
       },[])
   return (
-    <div className="h-2/3 w-2/3 ml-28 ">
+    <div className=" h-screen w-full ">
       <Carousel autoPlay infiniteLoop showThumbs={false} interval={3000}>
         {items.map((newItem, index) => (
           <Link to={`/product-details/${newItem._id}`}>
           <div key={index}>
-            <p className = "font-bold text-white opacity-75">{newItem.name}</p>
-            <img className='h-96 w-48' src={newItem.image} alt={`Slide ${index}`} />
+            <img className='h-screen w-48' src={newItem.image} alt={`Slide ${index}`} />
           </div>
             </Link>
         ))}

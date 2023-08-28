@@ -4,11 +4,11 @@ import Slider from '../components/Slider';
 
 const HomePage = () => {
   return (
-    <div className="flex h-screen bg-white">
-    <div class="flex flex-col justify-center items-center w-2/3 p-8 bg-gradient-to-r from-blue-900 to-blue-700 rounded-lg shadow-xl">
+    <div className="flex h-screen ">
+    <div class="flex flex-col justify-center items-center w-2/3 p-8 bg-gradient-to-r from-blue-900 to-blue-700  shadow-xl">
   <img src="/home.png" alt="Logo" class="h-20 w-20 mb-4 shadow-md" />
-  <h1 class="text-3xl font-extrabold text-white mb-4">Welcome to MarketLink!</h1>
-  <p class="text-lg text-gray-300 mb-2 font-semibold">About:</p>
+  <h1 class="text-3xl font-extrabold text-white mb-4 ">Welcome to MarketLink!</h1>
+  <p class="text-lg text-gray-300 mb-2 font-semibold ">About:</p>
   <p class=" text-gray-200 mb-6">
     This project is a full-stack e-commerce web application that focuses on providing users with the ability to:
   </p>
@@ -22,8 +22,7 @@ const HomePage = () => {
     <li>Edit everything above</li>
   </ul>
 </div>
-    <div className="w-1/2 pt-14">
-    <p className ="text-center text-3xl font-extrabold text-black  pb-10 ">New arrivals</p>
+    <div className="w-2/3">
       <Slider />
     </div>
   </div>
