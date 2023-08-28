@@ -4,7 +4,7 @@ import Slider from '../components/Slider';
 
 const HomePage = () => {
   return (
-    <div className="flex h-screen bg-gradient-to-r from-blue-700 to-purple-500">
+    <div className="flex h-screen bg-white">
     <div class="flex flex-col justify-center items-center w-2/3 p-8 bg-gradient-to-r from-blue-900 to-blue-700 rounded-lg shadow-xl">
   <img src="/home.png" alt="Logo" class="h-20 w-20 mb-4 shadow-md" />
   <h1 class="text-3xl font-extrabold text-white mb-4">Welcome to MarketLink!</h1>
@@ -23,7 +23,7 @@ const HomePage = () => {
   </ul>
 </div>
     <div className="w-1/2 pt-14">
-    <p className ="text-center font-bold text-white text-2xl pb-10 ">New arrivals</p>
+    <p className ="text-center text-3xl font-extrabold text-black  pb-10 ">New arrivals</p>
       <Slider />
     </div>
   </div>
