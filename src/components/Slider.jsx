@@ -25,7 +25,7 @@ const Slider = () => {
         getAllProducts();
       },[])
   return (
-    <div className="h-96 w-2/3 ml-28 shadow-lg border-palette-lighter">
+    <div className="h-2/3 w-2/3 ml-28 ">
       <Carousel autoPlay infiniteLoop showThumbs={false} interval={3000}>
         {items.map((newItem, index) => (
           <Link to={`/product-details/${newItem._id}`}>
