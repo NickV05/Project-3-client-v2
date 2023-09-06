@@ -60,25 +60,26 @@ function SignupPage() {
         onSubmit={handleSignupSubmit}
         class="flex flex-col justify-center align-middle"
       >
-        <div
-          class="relative mb-6 flex flex-col justify-center align-middle"
-          
-        >
-          <input
-            type="email"
-            name="email"
-            class="peer flex min-h-[auto] w-1/2 justify-center align-middle rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-            id="exampleFormControlInput3"
-            placeholder="Email address"
-            onChange={handleTextChange}
-          />
-        </div>
 
-        <div class="relative mb-6">
+        <div class="relative mb-6 flex flex-col justify-center align-middle">
+                <input
+                  type="email"
+                  name="email"
+                  onChange={handleTextChange}
+                  class="peer flex min-h-[auto] lg:w-1/2 sm:w-5/6 justify-center align-middle rounded border-0 bg-transparent px-3 py-[0.32rem]
+                   leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 
+                   data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 
+                   dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 "
+                  
+                   placeholder="Email address"
+                />
+              </div>
+
+        <div class="relative mb-6 flex flex-col justify-center align-middle">
           <input
             type="password"
             name="password"
-            class="peer block min-h-[auto] w-1/2 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
+            class="peer block min-h-[auto] lg:w-1/2 sm:w-5/6 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
             outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 
             motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 
             [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -88,11 +89,11 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" >
+        <div class="relative mb-6 flex flex-col justify-center align-middle" >
           <input
             type="text"
             name="fullName"
-            class="peer block min-h-[auto] w-1/2 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
+            class="peer block min-h-[auto] lg:w-1/2 sm:w-5/6 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
             outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 
             motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 
             [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -102,11 +103,11 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" >
+        <div class="relative mb-6 flex flex-col justify-center align-middle" >
           <input
             type="text"
             name="username"
-            class="peer block min-h-[auto] w-1/2 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
+            class="peer block min-h-[auto] lg:w-1/2 sm:w-5/6 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
             outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 
             motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 
             [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -116,11 +117,11 @@ function SignupPage() {
           />
         </div>
 
-        <div class="relative mb-6" >
+        <div class="relative mb-6 flex flex-col justify-center align-middle" >
           <input
             type="text"
             name="location"
-            class="peer block min-h-[auto] w-1/2 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
+            class="peer block min-h-[auto] lg:w-1/2 sm:w-5/6 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
             outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 
             motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 
             [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -132,7 +133,7 @@ function SignupPage() {
 
         <button
           type="submit"
-          class=" w-72 rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] 
+          class=" w-72 rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] 
           transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
           focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
           focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 

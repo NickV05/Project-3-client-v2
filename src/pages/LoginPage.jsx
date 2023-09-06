@@ -67,23 +67,26 @@ function LoginPage() {
                   type="email"
                   name="email"
                   onChange={handleEmail}
-                  class="peer flex min-h-[auto] w-1/2 justify-center align-middle rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                  class="peer flex min-h-[auto] lg:w-1/2 sm:w-5/6 justify-center align-middle rounded border-0 bg-transparent px-3 py-[0.32rem]
+                   leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 
+                   data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 
+                   dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 "
                   
                   placeholder="Email address"
                 />
               </div>
 
-              <div class="relative mb-6" >
+              <div class="relative mb-6 flex flex-col justify-center align-middle">
                 <input
                   type="password"
                   name="password"
                   onChange={handlePassword}
-                  class="peer block min-h-[auto] w-1/2 rounded justify-center align-middle border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] 
-                  outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 
-                  motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 
-                  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-    
-                  placeholder="Password"
+                  class="peer flex min-h-[auto] lg:w-1/2 sm:w-5/6 justify-center align-middle rounded border-0 bg-transparent px-3 py-[0.32rem]
+                   leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 
+                   data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 
+                   dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 "
+                  
+                   placeholder="Password"
                 />
               </div>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext} from "react";
+import { useContext,useState} from "react";
 import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 import {
@@ -9,6 +9,12 @@ import {
  
 function Navbar() {
   initTE({ Collapse });
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
     let number;
     const {user, logOutUser } = useContext(AuthContext);
@@ -36,6 +42,18 @@ function Navbar() {
       </Link>
 
     </div>
+
+
+    <button onClick={toggleMenu} type="button" data-dial-toggle="speed-dial-menu-top-right" aria-controls="speed-dial-menu-top-right" 
+    aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14
+     hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none 
+     dark:focus:ring-blue-800 hover:rotate-45">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" 
+        viewBox="0 0 18 18">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+    </svg>
+    <span class="sr-only">Open actions menu</span>
+</button>
 
       <div className="flex items-center">
 
@@ -129,6 +147,7 @@ function Navbar() {
       </div>
     </div>
 </nav>
+
   );
 }
  
