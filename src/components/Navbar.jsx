@@ -6,6 +6,7 @@ import {
   Collapse,
   initTE,
 } from "tw-elements";
+import {FaBars, FaTimes} from "react-icons/fa"
  
 function Navbar() {
   initTE({ Collapse });
@@ -32,6 +33,7 @@ function Navbar() {
   className="relative flex w-full flex-wrap items-center justify-between bg-[#FBFBFB] py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4"
   data-te-navbar-ref>
   <div className="flex w-full flex-wrap items-center justify-between px-3">
+  
     <div>
     <Link to="/" className="mx-2 my-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-0 lg:mt-0">
         <img
@@ -45,22 +47,17 @@ function Navbar() {
 
 
     <button onClick={toggleMenu} type="button" data-dial-toggle="speed-dial-menu-top-right" aria-controls="speed-dial-menu-top-right" 
-    aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14
+    aria-expanded="false" className="flex md:hidden items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14
      hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none 
      dark:focus:ring-blue-800 hover:rotate-45">
-    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" 
-        viewBox="0 0 18 18">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-    </svg>
     <span class="sr-only">Open actions menu</span>
+    {isMenuOpen ? <FaTimes/> : <FaBars/>}
 </button>
 
-      <div className="flex items-center">
+      <div className="hidden md:flex items-center">
 
        {getToken() && (
         <>
-        
-        
         <Link to="/cart">
         <span className = "flex mr-7">
           <img src="/cart.png" className="w-8 h-8 mr-3 "/> {number !== 0 && <p className="text-base mt-1 font-bold border-b-2 border-black">{number}</p>}
@@ -143,10 +140,65 @@ function Navbar() {
         </button>
         </Link>
         </>)}
-
       </div>
+
+      {isMenuOpen && (
+          <div className="md:hidden flex flex-col absolute top-full right-0 mt-2 space-y-2 bg-transparent rounded-lg z-10">
+            <Link to="/cart" className =" flex justify-around">
+              <span className="flex">
+                <img src="/cart.png" className="w-10 h-8 pr-2" alt="Cart" />
+                {number !== 0 && <p className =" text-2xl text-bold border-b border-black">{number}</p>}
+              </span>
+            </Link>
+            <Link to="/add-product" className =" flex justify-center">
+              <button type="button" data-te-ripple-init data-te-ripple-color="light" className=" w-full bg-white font-semibold">
+                List item
+              </button>
+            </Link>
+            <Link to="/products" className =" flex justify-center">
+              <button type="button" data-te-ripple-init data-te-ripple-color="light" className=" w-full bg-white font-semibold">
+                Shop
+              </button>
+            </Link>
+            {user && (
+              <>
+                <Link to={`/profile/${user._id}`} className =" flex justify-center">
+                  <button
+                    type="button"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    className=" w-full bg-white font-semibold"
+                  >
+                    Your Profile
+                  </button>
+                </Link>
+                <Link to={`/messenger/${user._id}`} className =" flex justify-center">
+                  <button
+                    type="button"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    className=" w-full bg-white font-semibold"
+                  >
+                    Messenger
+                  </button>
+                </Link>
+              </>
+            )}
+            <button
+              onClick={logOutUser}
+              type="button"
+              data-te-ripple-init
+              data-te-ripple-color="light"
+              className=" w-full bg-white font-semibold"
+            >
+              Logout
+            </button>
+          </div>
+        )}
     </div>
 </nav>
+
+
 
   );
 }
