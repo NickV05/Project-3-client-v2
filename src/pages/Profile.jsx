@@ -143,7 +143,7 @@ const Profile = () => {
                   </div>
 
                   {user && user._id !== userId && (
-                    <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                    <div className="space-x-8 flex mt-32 md:mt-0 justify-center">
                       {!following && (
                         <button
                           onClick={toFollow}
@@ -168,10 +168,11 @@ const Profile = () => {
                   )}
 
                   {user && user._id === userId && (
-                    <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                    <div className="space-x-8 flex mt-32 md:mt-0 justify-center">
                       <button
                         onClick={editProfile}
-                        className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                        className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg 
+                        font-medium transition transform hover:-translate-y-0.5"
                       >
                         Edit info
                       </button>
@@ -206,7 +207,7 @@ const Profile = () => {
             <div
               id="defaultModal"
               tabIndex="-1"
-              className="flex fixed mt-72 top-0 right-0 left-0 z-50 justify-center items-center w-screenmd:inset-0 h-52 md:h-52 "
+              className="flex fixed md:mt-72 mt-16 top-0 right-0 left-0 z-50 justify-center items-center w-screenmd:inset-0 h-52 md:h-52 "
             >
               <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
                 <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -240,7 +241,7 @@ const Profile = () => {
                   <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 mb-4 sm:grid-cols-2">
                       <div>
-                        <img src={updatedUser.image} className=" h-52" />
+                        <img src={updatedUser.image} className=" h-52 ml-14 md:ml-0 rounded-full" />
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                           Name
                         </label>
@@ -271,10 +272,10 @@ const Profile = () => {
                         </label>
                         <input
                           type="text"
-                          name="location"
-                          value={updatedUser.location}
+                          name="username"
+                          value={updatedUser.username}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                          id="exampleFormControlInput33"
+                          id="exampleFormControlInput333"
                           onChange={handleTextChange}
                         />
                       </div>
@@ -296,7 +297,7 @@ const Profile = () => {
                     <button
                       disabled={buttonDisabled}
                       type="submit"
-                      className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      className="text-white bg-blue-500 inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                     >
                       <svg
                         className="mr-1 -ml-1 w-6 h-6"

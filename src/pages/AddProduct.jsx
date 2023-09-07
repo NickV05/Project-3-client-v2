@@ -72,7 +72,7 @@ const AddProduct = () => {
 <div
   id="defaultModal"
   tabIndex="-1"
-  className="flex fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
+  className="flex md:fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
 >
   <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
     <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -194,7 +194,7 @@ const AddProduct = () => {
         <button
           disabled={buttonDisabled}
           type="submit"
-          className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          className="text-white inline-flex bg-blue-500 items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
           <svg
             className="mr-1 -ml-1 w-6 h-6"

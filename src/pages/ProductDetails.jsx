@@ -121,12 +121,12 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className ="flex ">
+    <div className ="md:flex ">
       {details ? (
         <div
           id="readProductModal"
           tabIndex="-1"
-          className="flex justify-start ml-10 items-center w-50 md:inset-0 h-modal md:h-full"
+          className="flex justify-start md:ml-10 items-center w-50 md:inset-0 h-modal md:h-full"
         >
           <div className="relative p-4 w-full max-w-xl h-full md:h-auto">
             <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -269,11 +269,11 @@ const ProductDetails = () => {
       {details && (<div className =" w-96 mt-4">
 
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ({details.comments.length})</h2>
+        <h2 class="text-lg lg:text-2xl font-bold ml-5 text-gray-900 dark:text-white">Discussion ({details.comments.length})</h2>
     </div>
       {isEditing && (
         <form onSubmit={handleCommentSubmit} className="mb-6">
-          <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <div className="py-2 px-4 mb-4 mx-5 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <label for="comment" className="sr-only">
               Your comment
             </label>
@@ -291,7 +291,7 @@ const ProductDetails = () => {
           </div>
           <button
             type="submit"
-            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 
+            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center bg-blue-500 ml-5 text-white bg-primary-700 rounded-lg focus:ring-4 
             focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
           >
             Post comment
