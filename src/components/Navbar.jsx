@@ -38,14 +38,14 @@ function Navbar() {
       shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4"
       data-te-navbar-ref
     >
-      <div className="flex w-full flex-wrap items-center justify-between px-3">
+      <div className="flex w-full flex-wrap items-center justify-between md:px-3 px-1">
         <div>
           <Link
             to="/"
-            className="mx-2 my-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-0 lg:mt-0"
+            className="md:mx-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-0 lg:mt-0"
           >
             <img
-              className="h-10"
+              className="md:h-10 h-7 mt-2 md:mt-0"
               src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1691628543/project3/home_q0jx93.png"
               alt="TE Logo"
               loading="lazy"
@@ -59,9 +59,9 @@ function Navbar() {
           data-dial-toggle="speed-dial-menu-top-right"
           aria-controls="speed-dial-menu-top-right"
           aria-expanded="false"
-          className="flex md:hidden items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14
+          className="flex md:hidden items-center justify-center text-white bg-blue-700 rounded-full w-7 h-7
      hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none 
-     dark:focus:ring-blue-800 hover:rotate-45"
+     dark:focus:ring-blue-800 hover:rotate-45 mt-1"
         >
           <span class="sr-only">Open actions menu</span>
           {isMenuOpen ? <FaTimes /> : <FaBars />}
@@ -169,13 +169,13 @@ function Navbar() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden flex flex-col absolute top-full right-0 mt-2 pr-2 space-y-2 bg-transparent 
-          rounded-lg z-10 shadow-xl">
+          <div className="md:hidden flex flex-row absolute top-2 left-9 gap-0.5 pr-2 space-y-2 bg-transparent 
+          rounded-lg z-10 ">
           {user ? (
               <>
             <Link onClick={click} to="/cart" className=" flex justify-around">
               <span className="flex">
-                <img src="/cart.png" className="w-10 h-8 pr-2" alt="Cart" />
+                <img src="/cart.png" className="w-8 h-8 text-xs mr-0.5 mt-1.5" alt="Cart" />
                 {number !== 0 && (
                   <p className=" text-2xl text-bold border-b border-black">
                     {number}
@@ -189,7 +189,7 @@ function Navbar() {
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 onClick={click}
-                className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                className=" w-13 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
               >
                 List item
               </button>
@@ -200,7 +200,7 @@ function Navbar() {
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 onClick={click}
-                className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                className=" w-9 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
               >
                 Shop
               </button>
@@ -215,7 +215,7 @@ function Navbar() {
                     onClick={click}
                     data-te-ripple-init
                     data-te-ripple-color="light"
-                    className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                    className=" w-13 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
                   >
                     Your Profile
                   </button>
@@ -229,7 +229,7 @@ function Navbar() {
                     onClick={click}
                     data-te-ripple-init
                     data-te-ripple-color="light"
-                    className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                    className=" w-13 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
                   >
                     Messenger
                   </button>
@@ -242,7 +242,7 @@ function Navbar() {
               type="button"
               data-te-ripple-init
               data-te-ripple-color="light"
-              className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+              className=" w-11 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
             >
               Logout
             </button>
@@ -255,7 +255,7 @@ function Navbar() {
                   type="button"
                   data-te-ripple-init
                   data-te-ripple-color="light"
-                  className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                  className=" w-11 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
                 >
                   Sign Up
                 </button>
@@ -267,7 +267,7 @@ function Navbar() {
                   type="button"
                   data-te-ripple-init
                   data-te-ripple-color="light"
-                  className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                  className=" w-11 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
                 >
                   Login
                 </button>
