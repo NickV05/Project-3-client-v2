@@ -172,7 +172,7 @@ function Navbar() {
           rounded-lg z-10 shadow-xl">
           {user ? (
               <>
-            <Link to="/cart" className=" flex justify-around">
+            <Link onClick={click} to="/cart" className=" flex justify-around">
               <span className="flex">
                 <img src="/cart.png" className="w-10 h-8 pr-2" alt="Cart" />
                 {number !== 0 && (

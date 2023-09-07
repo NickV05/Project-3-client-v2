@@ -101,19 +101,19 @@ const Cart = () => {
 
   return (
 <>
-  {cart && cart.items && !cart.message ? <div class="container p-8 mx-auto mt-12">
+  {cart && cart.items && !cart.message ? <div class="container md:p-8 p-2 mx-auto mt-12">
   <div class="w-full overflow-x-auto">
     <div class="my-2">
-      <h3 class="text-xl font-bold tracking-wider">Shopping Cart </h3>
+      <h3 class="md:text-xl text-sm font-bold tracking-wider">Shopping Cart </h3>
     </div>
     <table class="w-full shadow-inner">
       <thead>
         <tr class="bg-gray-100">
-          <th class="px-6 py-3 font-bold whitespace-nowrap">Image</th>
-          <th class="px-6 py-3 font-bold whitespace-nowrap">Product</th>
-          <th class="px-6 py-3 font-bold whitespace-nowrap">Qty</th>
-          <th class="px-6 py-3 font-bold whitespace-nowrap">Price</th>
-          <th class="px-6 py-3 font-bold whitespace-nowrap">Remove</th>
+          <th class="md:px-6 py-3 font-bold whitespace-nowrap">Image</th>
+          <th class="md:px-6 py-3 font-bold whitespace-nowrap">Product</th>
+          <th class="md:px-6 py-3 font-bold whitespace-nowrap">Qty</th>
+          <th class="md:px-6 py-3 font-bold whitespace-nowrap">Price</th>
+          <th class="md:px-6 py-3 font-bold whitespace-nowrap">Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -125,24 +125,24 @@ const Cart = () => {
             <div class="flex justify-center">
               <img
                 src={image}
-                class="object-cover h-28 w-28 rounded-2xl"
+                class="object-cover md:h-28 w-28 rounded-2xl"
                 alt="image"
               />
             </div>
           </td>
-          <td class="p-4 px-6 text-center whitespace-nowrap">
+          <td class="md:p-4 md:px-6 text-center whitespace-nowrap">
             <div class="flex flex-col items-center justify-center">
             <Link to={`/product-details/${_id}`}>
               <h3>{name}</h3>
               </Link>
             </div>
           </td>
-          <td class="p-4 px-6 text-center whitespace-nowrap">
+          <td class="md:p-4 md:px-6 text-center whitespace-nowrap">
             <div>
               <button onClick={() => decreaseItem(_id)} className =" bg-white hover:bg-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="inline-flex w-6 h-6 text-red-600"
+                  class="inline-flex md:w-6 md:h-6 w-4 h-4 text-red-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -160,13 +160,13 @@ const Cart = () => {
                 type="text"
                 name="qty"
                 value={quantity}
-                class="w-12 text-center bg-gray-100 outline-none"
+                class="md:w-12 w-6 text-center bg-gray-100 outline-none"
               />
               
               <button onClick={() => increaseItem(_id)} className =" bg-white hover:bg-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="inline-flex w-6 h-6 text-green-600"
+                  class="inline-flex md:w-6 md:h-6 w-4 h-4 text-green-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -181,12 +181,12 @@ const Cart = () => {
               </button>
             </div>
           </td>
-          <td class="p-4 px-6 text-center whitespace-nowrap">$ {formatNumber(cost)}</td>
-          <td class="p-4 px-6 text-center whitespace-nowrap">
+          <td class="md:p-4 md:px-6 px-1 text-center whitespace-nowrap">$ {formatNumber(cost)}</td>
+          <td class="md:p-4 md:px-6 text-center whitespace-nowrap">
             <button onClick={() => deleteFromCart(_id)} className =" bg-white hover:bg-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6 text-red-400"
+                class="md:w-6 md:h-6 w-4 h-4 text-red-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -256,7 +256,7 @@ const Cart = () => {
     </div>
   </div>
 </div> : <div className =" h-full flex justify-center">
-<img src ="https://res.cloudinary.com/dyto7dlgt/image/upload/v1692911525/project3/empty_cart_kgfei1.png" className =" h-96 w-auto mt-32"/>
+<img src ="https://res.cloudinary.com/dyto7dlgt/image/upload/v1692911525/project3/empty_cart_kgfei1.png" className =" md:h-96 w-auto mt-32"/>
 </div>}
 </>
 
