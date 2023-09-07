@@ -17,6 +17,10 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const click = () => {
+    setIsMenuOpen(false)
+  }
+
     let number;
     const {user, logOutUser } = useContext(AuthContext);
     const {cart} = useContext(CartContext)
@@ -30,176 +34,248 @@ function Navbar() {
     
   return (
     <nav
-  className="relative flex w-full flex-wrap items-center justify-between bg-[#FBFBFB] py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4"
-  data-te-navbar-ref>
-  <div className="flex w-full flex-wrap items-center justify-between px-3">
-  
-    <div>
-    <Link to="/" className="mx-2 my-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-0 lg:mt-0">
-        <img
-          className ="h-10"
-          src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1691628543/project3/home_q0jx93.png"
-          alt="TE Logo"
-          loading="lazy" />
-      </Link>
+      className="relative flex w-full flex-wrap items-center justify-between bg-[#FBFBFB] py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4"
+      data-te-navbar-ref
+    >
+      <div className="flex w-full flex-wrap items-center justify-between px-3">
+        <div>
+          <Link
+            to="/"
+            className="mx-2 my-1 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 lg:mb-0 lg:mt-0"
+          >
+            <img
+              className="h-10"
+              src="https://res.cloudinary.com/dyto7dlgt/image/upload/v1691628543/project3/home_q0jx93.png"
+              alt="TE Logo"
+              loading="lazy"
+            />
+          </Link>
+        </div>
 
-    </div>
-
-
-    <button onClick={toggleMenu} type="button" data-dial-toggle="speed-dial-menu-top-right" aria-controls="speed-dial-menu-top-right" 
-    aria-expanded="false" className="flex md:hidden items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14
+        <button
+          onClick={toggleMenu}
+          type="button"
+          data-dial-toggle="speed-dial-menu-top-right"
+          aria-controls="speed-dial-menu-top-right"
+          aria-expanded="false"
+          className="flex md:hidden items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14
      hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none 
-     dark:focus:ring-blue-800 hover:rotate-45">
-    <span class="sr-only">Open actions menu</span>
-    {isMenuOpen ? <FaTimes/> : <FaBars/>}
-</button>
-
-      <div className="hidden md:flex items-center">
-
-       {getToken() && (
-        <>
-        <Link to="/cart">
-        <span className = "flex mr-7">
-          <img src="/cart.png" className="w-8 h-8 mr-3 "/> {number !== 0 && <p className="text-base mt-1 font-bold border-b-2 border-black">{number}</p>}
-        </span>
-        </Link>
-
-
-        <Link to="/add-product">
-        <button
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          List item
-        </button>
-        </Link>
-
-        <Link to="/products">
-        <button
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          Shop
-        </button>
-        </Link>
-
-        {user && <Link to= {`/profile/${user._id}`}>
-        <button
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          Your Profile
-        </button>
-        </Link>
-        }
-
-        {user && <Link to= {`/messenger/${user._id}`}>
-        <button
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          Messenger
-        </button>
-        </Link>
-        }
-
-        <button
-         onClick={logOutUser}
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          Logout
+     dark:focus:ring-blue-800 hover:rotate-45"
+        >
+          <span class="sr-only">Open actions menu</span>
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        </>)}
+        <div className="hidden md:flex items-center">
+          {getToken() && (
+            <>
+              <Link to="/cart">
+                <span className="flex mr-7">
+                  <img src="/cart.png" className="w-8 h-8 mr-3 " />{" "}
+                  {number !== 0 && (
+                    <p className="text-base mt-1 font-bold border-b-2 border-black">
+                      {number}
+                    </p>
+                  )}
+                </span>
+              </Link>
 
-        {!getToken() && (
-        <> 
-        <Link to="/signup">
-        <button
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          Sign Up
-        </button>
-        </Link>
+              <Link to="/add-product">
+                <button
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
+                  List item
+                </button>
+              </Link>
 
-        <Link to="/login">
-        <button
-          type="button"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-          Login
-        </button>
-        </Link>
-        </>)}
-      </div>
+              <Link to="/products">
+                <button
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
+                  Shop
+                </button>
+              </Link>
 
-      {isMenuOpen && (
-          <div className="md:hidden flex flex-col absolute top-full right-0 mt-2 space-y-2 bg-transparent rounded-lg z-10">
-            <Link to="/cart" className =" flex justify-around">
-              <span className="flex">
-                <img src="/cart.png" className="w-10 h-8 pr-2" alt="Cart" />
-                {number !== 0 && <p className =" text-2xl text-bold border-b border-black">{number}</p>}
-              </span>
-            </Link>
-            <Link to="/add-product" className =" flex justify-center">
-              <button type="button" data-te-ripple-init data-te-ripple-color="light" className=" w-full bg-white font-semibold">
-                List item
-              </button>
-            </Link>
-            <Link to="/products" className =" flex justify-center">
-              <button type="button" data-te-ripple-init data-te-ripple-color="light" className=" w-full bg-white font-semibold">
-                Shop
-              </button>
-            </Link>
-            {user && (
-              <>
-                <Link to={`/profile/${user._id}`} className =" flex justify-center">
+              {user && (
+                <Link to={`/profile/${user._id}`}>
                   <button
                     type="button"
                     data-te-ripple-init
                     data-te-ripple-color="light"
-                    className=" w-full bg-white font-semibold"
+                    className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   >
                     Your Profile
                   </button>
                 </Link>
-                <Link to={`/messenger/${user._id}`} className =" flex justify-center">
+              )}
+
+              {user && (
+                <Link to={`/messenger/${user._id}`}>
                   <button
                     type="button"
                     data-te-ripple-init
                     data-te-ripple-color="light"
-                    className=" w-full bg-white font-semibold"
+                    className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   >
                     Messenger
                   </button>
                 </Link>
-              </>
-            )}
+              )}
+
+              <button
+                onClick={logOutUser}
+                type="button"
+                data-te-ripple-init
+                data-te-ripple-color="light"
+                className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+              >
+                Logout
+              </button>
+            </>
+          )}
+
+          {!getToken() && (
+            <>
+              <Link to="/signup">
+                <button
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
+                  Sign Up
+                </button>
+              </Link>
+
+              <Link to="/login">
+                <button
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  className="mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
+                  Login
+                </button>
+              </Link>
+            </>
+          )}
+        </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden flex flex-col absolute top-full right-0 mt-2 space-y-2 bg-transparent rounded-lg z-10">
+          {user ? (
+              <>
+            <Link to="/cart" className=" flex justify-around">
+              <span className="flex">
+                <img src="/cart.png" className="w-10 h-8 pr-2" alt="Cart" />
+                {number !== 0 && (
+                  <p className=" text-2xl text-bold border-b border-black">
+                    {number}
+                  </p>
+                )}
+              </span>
+            </Link>
+            <Link to="/add-product" className=" flex justify-center">
+              <button
+                type="button"
+                data-te-ripple-init
+                data-te-ripple-color="light"
+                onClick={click}
+                className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+              >
+                List item
+              </button>
+            </Link>
+            <Link to="/products" className=" flex justify-center">
+              <button
+                type="button"
+                data-te-ripple-init
+                data-te-ripple-color="light"
+                onClick={click}
+                className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+              >
+                Shop
+              </button>
+            </Link>
+            
+                <Link
+                  to={`/profile/${user._id}`}
+                  className=" flex justify-center"
+                >
+                  <button
+                    type="button"
+                    onClick={click}
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                  >
+                    Your Profile
+                  </button>
+                </Link>
+                <Link
+                  to={`/messenger/${user._id}`}
+                  className=" flex justify-center"
+                >
+                  <button
+                    type="button"
+                    onClick={click}
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                  >
+                    Messenger
+                  </button>
+                </Link>
             <button
-              onClick={logOutUser}
+              onClick={() => {
+                logOutUser();
+                click();
+              }}
               type="button"
               data-te-ripple-init
               data-te-ripple-color="light"
-              className=" w-full bg-white font-semibold"
+              className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
             >
               Logout
             </button>
+              </>
+            ):(
+              <>
+              <Link to="/signup">
+                <button
+                onClick={click}
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                >
+                  Sign Up
+                </button>
+              </Link>
+
+              <Link to="/login">
+                <button
+                onClick={click}
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  className=" w-full bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                >
+                  Login
+                </button>
+              </Link>
+            </>
+            )}
           </div>
         )}
-    </div>
-</nav>
-
-
-
+      </div>
+    </nav>
   );
 }
  
