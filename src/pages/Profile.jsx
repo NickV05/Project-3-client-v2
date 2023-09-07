@@ -147,7 +147,7 @@ const Profile = () => {
                       {!following && (
                         <button
                           onClick={toFollow}
-                          className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                          className="text-white py-2 md:px-4 px-2 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                         >
                           + Follow
                         </button>
@@ -156,7 +156,7 @@ const Profile = () => {
                       {following && (
                         <button
                           onClick={unFollow}
-                          className="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-700 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                          className="text-white md:px-4 px-2 uppercase rounded bg-red-600 hover:bg-red-700 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                         >
                           Unfollow
                         </button>
