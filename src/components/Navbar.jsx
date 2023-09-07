@@ -176,11 +176,7 @@ function Navbar() {
             <Link onClick={click} to="/cart" className=" flex justify-around">
               <span className="flex">
                 <img src="/cart.png" className="w-8 h-8 text-xs mr-0.5 mt-1.5" alt="Cart" />
-                {number !== 0 && (
-                  <p className=" text-2xl text-bold border-b border-black">
-                    {number}
-                  </p>
-                )}
+                
               </span>
             </Link>
             <Link to="/add-product" className=" flex justify-center">
