@@ -168,7 +168,8 @@ function Navbar() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden flex flex-col absolute top-full right-0 mt-2 space-y-2 bg-transparent rounded-lg z-10">
+          <div className="md:hidden flex flex-col absolute top-full right-0 mt-2 pr-2 space-y-2 bg-transparent 
+          rounded-lg z-10 shadow-xl">
           {user ? (
               <>
             <Link to="/cart" className=" flex justify-around">
