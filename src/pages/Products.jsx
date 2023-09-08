@@ -30,7 +30,7 @@ const Products = () => {
 
   return (
     <div className="block align-middle justify-center">
-      <div className="flex">
+      <div className="flex ">
         <SearchBar getAllProducts={getAllProducts} setMarket={setMarket} />
         <Filter getAllProducts={getAllProducts} setMarket={setMarket} />
         <Sort setOrder={setOrder} />

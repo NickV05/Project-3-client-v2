@@ -93,27 +93,33 @@ const Messenger = () => {
               {convo && convo.userOne && convo.userTwo ? (
                 <div class="h-16 w-16 rounded-full border overflow-hidden mr-5 md:mr-0">
                   {convo.userOne._id != user._id ? (
+                    <Link to={`/profile/${convo.userOne._id}`}>
                     <img
                       src={convo.userOne.image}
                       alt="Avatar"
                       class="h-full w-full"
                     />
+                    </Link>
                   ) : (
+                    <Link to={`/profile/${convo.userTwo._id}`}>
                     <img
                       src={convo.userTwo.image}
                       alt="Avatar"
                       class="h-full w-full"
                     />
+                    </Link>
                   )}
                 </div>
               ) : (
                 <div class="h-20 w-20 rounded-full border overflow-hidden mr-5 md:mr-0">
                   {anotherUser && (
+                    <Link to={`/profile/${anotherUser._id}`}>
                     <img
                       src={anotherUser.image}
                       alt="Avatar"
                       class="h-full w-full"
                     />
+                    </Link>
                   )}
                 </div>
               )}

@@ -82,7 +82,7 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
                   {dropDown && (
                     <div
                       id="dropdownComment1"
-                      class="absolute flex align-middle justify-center right-0 mt-2 z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                      class="absolute flex align-middle justify-center right-0 mt-2 z-10 w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                     >
                       <ul
                         class="py-1 text-sm text-gray-700 dark:text-gray-200"
@@ -121,7 +121,7 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
                                 editReview();
                                 handleDropDown();
                               }}
-                              className="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 
+                              className="text-white inline-flex items-center bg-primary-700 w-full justify-center hover:bg-primary-800 focus:ring-4 
                         focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 
                         dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                             >

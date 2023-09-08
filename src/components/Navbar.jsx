@@ -251,7 +251,7 @@ function Navbar() {
                   type="button"
                   data-te-ripple-init
                   data-te-ripple-color="light"
-                  className=" w-11 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                  className=" w-14 h-7 ml-48 mt-2 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
                 >
                   Sign Up
                 </button>
@@ -263,7 +263,7 @@ function Navbar() {
                   type="button"
                   data-te-ripple-init
                   data-te-ripple-color="light"
-                  className=" w-11 h-7 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
+                  className=" w-11 h-7 ml-1 text-xs bg-white font-semibold hover:bg-gray-300 transition-all ease-in-out duration-700"
                 >
                   Login
                 </button>
