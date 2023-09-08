@@ -2,12 +2,24 @@ import { Link } from "react-router-dom";
 import { get } from "../services/authService";
 import { useContext, useEffect } from "react";
 import { CartContext } from "../context/cart.context";
+import successSound from "/audio/purchased.mp3"
 const Success = () => {
   const { cart, setCart } = useContext(CartContext);
   const deleteCart = () => {
     console.log("Cart after checkout ===>", cart);
     get("/stripe/delete-cart");
     setCart(null)
+  };
+
+  const playSuccessSound = () => {
+
+    const audio = new Audio(successSound);
+    audio.play();
+    setTimeout(() => {
+      audio.currentTime = 0;
+      audio.pause();
+
+    }, 1000);
   };
 
   useEffect(() => {
@@ -31,7 +43,7 @@ const Success = () => {
             Thank you for completing your secure online payment.
           </p>
           <p> Have a great day! </p>
-          <div class="py-10 text-center">
+          <div class="py-10 text-center" onClick={playSuccessSound}>
             <Link
               to="/products"
               class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"

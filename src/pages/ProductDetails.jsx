@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import EachComment from "../components/EachComment";
 import { CartContext } from "../context/cart.context";
+import addToCartSound from "/audio/add.mp3"
+import deleteSound from "/audio/deleted.mp3"
 
 const ProductDetails = () => {
   const [details, setDetails] = useState(null);
@@ -25,6 +27,28 @@ const ProductDetails = () => {
         setDetails(response.data);
       })
       .catch((error) => console.log(error));
+  };
+
+  const playAddToCartSound = () => {
+
+    const audio = new Audio(addToCartSound);
+    audio.play();
+    setTimeout(() => {
+      audio.currentTime = 0;
+      audio.pause();
+
+    }, 1000);
+  };
+
+  const playDeleteSound = () => {
+
+    const audio = new Audio(deleteSound);
+    audio.play();
+    setTimeout(() => {
+      audio.currentTime = 0;
+      audio.pause();
+
+    }, 1000);
   };
 
   useEffect(() => {
@@ -59,6 +83,7 @@ const ProductDetails = () => {
   };
 
   const deleteProduct = () => {
+    playDeleteSound();
     post(`/items/delete-item/${productId}`)
       .then(() => {
         navigate("/products");
@@ -67,6 +92,7 @@ const ProductDetails = () => {
   };
 
   const addToCart = () => {
+    playAddToCartSound();
     if (cart.message) {
       const body = {
         details: details,

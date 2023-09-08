@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { post } from "../services/authService";
 import { CartContext } from "../context/cart.context";
 import { Link, useNavigate } from "react-router-dom";
+import deleteSound from "/audio/deleted.mp3"
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -19,12 +20,24 @@ const Cart = () => {
     }
   }
 
+  const playDeleteSound = () => {
+
+    const audio = new Audio(deleteSound);
+    audio.play();
+    setTimeout(() => {
+      audio.currentTime = 0;
+      audio.pause();
+
+    }, 1000);
+  };
+
 
   useEffect(() => {
 
-    if (cart && !cart.message) {
+    if (cart && cart.items && !cart.message) {
 
       console.log("Cart for grouping ===>", cart)
+
       const theseItems = cart.items.reduce((groupedItems, item) => {
         if (!groupedItems[item._id]) {
           groupedItems[item._id] = {
@@ -62,7 +75,7 @@ const Cart = () => {
     }
 
     const deleteFromCart = (_id) => {
-      console.log("Id:", _id)
+      playDeleteSound();
       post(`/cart/remove-item/${_id}`, cartId)
           .then((response) => {
               console.log("Updated cart:", response.data);
@@ -76,6 +89,7 @@ const Cart = () => {
 
 
   const decreaseItem = (_id) => {
+    playDeleteSound();
     post(`/cart/decrease-item/${_id}`, cartId)
           .then((response) => {
               console.log("Updated cart:", response.data);

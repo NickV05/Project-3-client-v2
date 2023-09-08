@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { post } from "../services/authService";
 import { Link } from "react-router-dom";
+import deleteSound from "/audio/deleted.mp3"
 
 
 const EachComment = ({ comment, author, _id, getAllDetails }) => {
@@ -10,7 +11,19 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
     const [editedComment, setEditedComment] = useState(comment);
     const [dropDown, setDropdown] = useState(false)
 
+    const playDeleteSound = () => {
+
+      const audio = new Audio(deleteSound);
+      audio.play();
+      setTimeout(() => {
+        audio.currentTime = 0;
+        audio.pause();
+  
+      }, 1000);
+    };
+
     const deleteReview = () => {
+      playDeleteSound();
         post(`/items/delete-review/${_id}`)
             .then((updatedItem) => {
                 console.log("Client updated item:", updatedItem.data);
