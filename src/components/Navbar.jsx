@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext,useState} from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { CartContext } from "../context/cart.context";
 import {
@@ -31,6 +31,7 @@ function Navbar() {
     const getToken = () => {
       return localStorage.getItem('authToken')
     }
+
     
   return (
     <nav

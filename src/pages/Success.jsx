@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
 import { get } from "../services/authService";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect} from "react";
 import { CartContext } from "../context/cart.context";
 import successSound from "/audio/purchased.mp3"
 const Success = () => {
-  const { cart, setCart } = useContext(CartContext);
-  const deleteCart = () => {
-    console.log("Cart after checkout ===>", cart);
-    get("/stripe/delete-cart");
-    setCart(null)
-  };
+  const { cart, getCart } = useContext(CartContext);
+
+    const deleteCart = () => {
+      get("/stripe/delete-cart").then(() => {
+        getCart();
+        console.log("Cart after checkout ===>", cart);
+
+      })
+
+    };
 
   const playSuccessSound = () => {
 
@@ -24,10 +28,10 @@ const Success = () => {
 
   useEffect(() => {
     deleteCart();
-  }, []);
+  },[] );
 
   return (
-    <div class="bg-gray-100 h-screen">
+ <div class="bg-gray-100 h-screen">
       <div class="bg-white p-6  md:mx-auto">
         <svg viewBox="0 0 24 24" class="text-green-600 w-16 h-16 mx-auto my-6">
           <path
