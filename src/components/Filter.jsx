@@ -12,11 +12,9 @@ useEffect(() => {
     if (selectedCategory !== "all") {
       get("/items")
         .then((response) => {
-          console.log("Target ===>", selectedCategory);
           return response.data.filter((item) => item.category === selectedCategory);
         })
         .then((filteredItems) => {
-          console.log("filtered ==>", filteredItems);
           setMarket(filteredItems);
         });
     } else {

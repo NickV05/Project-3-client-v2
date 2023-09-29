@@ -16,7 +16,6 @@ const Messenger = () => {
   const getConvo = () => {
 
       get(`/users/get-convo/${adress}`).then((results) => {
-        console.log("Conversation ===>", results);
         setConvo(results.data.convo);
         setUser(results.data.myUser);
       });
@@ -25,7 +24,6 @@ const Messenger = () => {
   const getUserInfo = () => {
     
       get(`/users/user-detail/${adress}`).then((results) => {
-        console.log("Conversation with: ===>", results.data);
         setAnother(results.data);
       });
     
@@ -43,7 +41,6 @@ const Messenger = () => {
     e.preventDefault();
     post(`/users/send-message/${adress}`, { message: message }).then(
       (results) => {
-        console.log("Updated conversation/Created conversation ===>", results);
         setConvo(results.data.convo);
         setUser(results.data.user);
         setMessage("");

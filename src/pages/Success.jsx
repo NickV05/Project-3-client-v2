@@ -9,8 +9,6 @@ const Success = () => {
     const deleteCart = () => {
       get("/stripe/delete-cart").then(() => {
         getCart();
-        console.log("Cart after checkout ===>", cart);
-
       })
 
     };

@@ -23,7 +23,6 @@ const ProductDetails = () => {
   const getAllDetails = () => {
     get(`/items/item-detail/${productId}`)
       .then((response) => {
-        console.log("Product info", response.data);
         setDetails(response.data);
       })
       .catch((error) => console.log(error));
@@ -54,7 +53,6 @@ const ProductDetails = () => {
   useEffect(() => {
     getAllDetails();
     getCart();
-    console.log("Details ==== >", details);
   }, []);
 
   const editProduct = () => {
@@ -97,14 +95,8 @@ const ProductDetails = () => {
       const body = {
         details: details,
       };
-
-      console.log("Body", body);
-
-      console.log("User", user);
-
       post("/cart/create", body)
         .then((response) => {
-          console.log("New cart", response.data);
           setCart(response.data);
         })
         .catch((err) => {
@@ -119,7 +111,6 @@ const ProductDetails = () => {
 
       post("/cart/update", body)
         .then((response) => {
-          console.log("Updated cart", response.data);
           setCart(response.data);
         })
         .catch((err) => {
@@ -137,7 +128,6 @@ const ProductDetails = () => {
 
     post(`/items/add-comment/${productId}`, review)
       .then((response) => {
-        console.log("RESPONSE", response.data);
         setDetails(response.data);
         stopEditing();
       })

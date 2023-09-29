@@ -18,12 +18,10 @@ const Profile = () => {
   const getUserInfo = () => {
     get(`/users/user-detail/${userId}`)
       .then((userInfo) => {
-        console.log("UserProfile:", userInfo.data);
         setUser(userInfo.data);
         if(user){
           const checking = userInfo.data.followers.some((follower) => 
           follower == user._id)
-          console.log("Checking ==>", checking)
           setFollowing(checking)
         }
       })
@@ -39,7 +37,6 @@ const Profile = () => {
 
     fileChange(e)
       .then((response) => {
-        console.log(response.data);
         setUpdatedUser((prev) => ({
           ...prev,
           [e.target.name]: response.data.image,
@@ -57,7 +54,6 @@ const Profile = () => {
 
     post(`/users/user-update/${user._id}`, updatedUser)
       .then((results) => {
-        console.log("Results", results.data);
         storeToken(results.data.authToken);
         setUser(results.data.user);
         setEdit(false);
@@ -75,7 +71,6 @@ const Profile = () => {
   const unFollow =() => {
     post(`/users/unfollow/${userProfile._id}`)
     .then((results) => {
-      console.log("unfollow ===>",results.data)
       setFollowing(false)
       setUser(results.data)
     })
@@ -83,10 +78,8 @@ const Profile = () => {
 
 
   const toFollow =() => {
-    console.log("userProfileId to send ===>", userProfile._id)
     post(`/users/follow/${userProfile._id}`)
     .then((results) => {
-      console.log("Follow ===>", results.data)
       setFollowing(true)
       setUser(results.data)
     })
@@ -192,7 +185,6 @@ const Profile = () => {
                 {userProfile.listedItems.length ? (
                   <div className="py-6 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-4">
                     {userProfile.listedItems.map((item) => {
-                      console.log("Profile item:", item);
                       return <ItemInProfile key={item._id} {...item} />;
                     })}
                   </div>

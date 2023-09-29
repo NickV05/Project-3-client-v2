@@ -14,7 +14,6 @@ const Products = () => {
   const getAllProducts = () => {
     get("/items")
       .then((response) => {
-        console.log("All products:", response.data);
         setMarket(response.data);
       })
       .catch((error) => console.log(error));
@@ -25,7 +24,6 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Sorting ===>", sorting);
   }, [sorting]);
 
   return (

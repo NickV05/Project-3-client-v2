@@ -16,7 +16,6 @@ const CartProvider = ({ children }) => {
 
         get('/cart')
             .then((response) => {
-                console.log("CART ======>", response.data)
                 setCart(response.data)
             })
             .catch((err) => {

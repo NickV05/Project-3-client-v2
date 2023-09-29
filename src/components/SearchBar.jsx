@@ -5,15 +5,12 @@ const SearchBar = ({getAllProducts, setMarket}) => {
 
     
     const getData = (value) => {
-        console.log("Value ===>", value);
         value
             ? get("/items")
                 .then((response) => {
-                    console.log("Searched products:", response.data);
                     const results = response.data.filter((item) =>
                         value && item && item.name && item.name.toLowerCase().includes(value.toLowerCase())
                     );
-                    console.log("Results ==>", results);
                     setMarket(results);
                 })
                 .catch((error) => console.log(error))

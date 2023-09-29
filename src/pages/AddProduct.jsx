@@ -33,11 +33,9 @@ const AddProduct = () => {
 
     post("/items/new-item", product)
       .then((response) => {
-        console.log("New Product", response.data);
         navigate("products");
       })
       .catch((error) => {
-        console.log("Error", error);
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       });
@@ -55,11 +53,8 @@ const AddProduct = () => {
 
     fileChange(e)
       .then((response) => {
-        console.log(response.data);
-        console.log("post", product)
         setProduct((prev) => ({...prev, [e.target.name]: response.data.image}));
         setButtonDisabled(false);
-        console.log("post after", product)
       })
       .catch((err) => {
         setButtonDisabled(false);

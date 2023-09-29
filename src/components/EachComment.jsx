@@ -26,7 +26,6 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
       playDeleteSound();
         post(`/items/delete-review/${_id}`)
             .then((updatedItem) => {
-                console.log("Client updated item:", updatedItem.data);
                 getAllDetails();
             })
             .catch((err) => console.log(err));
@@ -42,7 +41,6 @@ const EachComment = ({ comment, author, _id, getAllDetails }) => {
         setEditing(false);
         post(`/items/review-update/${_id}`, requestBody)
             .then((response) => {
-                console.log("Updated review", response.data);
                 getAllDetails();
             });
     };

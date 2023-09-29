@@ -9,12 +9,10 @@ const Cart = () => {
 
   const [groupedItems, setGroupedItems] = useState({})
   
-  console.log("in Cart 1", cart);
   const navigate = useNavigate();
   const cartId = cart?._id;
 
   const formatNumber = (number) => {
-    console.log("Number ===>", number)
     if(number){
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
@@ -36,8 +34,6 @@ const Cart = () => {
 
     if (cart && cart.items && !cart.message) {
 
-      console.log("Cart for grouping ===>", cart)
-
       const theseItems = cart.items.reduce((groupedItems, item) => {
         if (!groupedItems[item._id]) {
           groupedItems[item._id] = {
@@ -47,7 +43,6 @@ const Cart = () => {
         } else {
           groupedItems[item._id].quantity++;
         }
-        console.log("groupedItems", groupedItems)
         return groupedItems;
       }, {})
 
@@ -55,14 +50,12 @@ const Cart = () => {
 
     }
 
-    console.log("in Cart 2", cart);
 }, [cart])
 
 
     const proceedToPayment = () => {
       post(`/stripe/create-checkout-session/${cart._id}`, groupedItems)
           .then((response) => {
-              console.log("STRIPE URL:", response.data);
               const url = response.data.url;
               setCart(null)
               window.location.href = url;
@@ -78,7 +71,6 @@ const Cart = () => {
       playDeleteSound();
       post(`/cart/remove-item/${_id}`, cartId)
           .then((response) => {
-              console.log("Updated cart:", response.data);
               setCart(response.data)
               navigate("/cart");
           })
@@ -92,7 +84,6 @@ const Cart = () => {
     playDeleteSound();
     post(`/cart/decrease-item/${_id}`, cartId)
           .then((response) => {
-              console.log("Updated cart:", response.data);
               setCart(response.data)
               navigate("/cart");
           })
@@ -104,7 +95,6 @@ const Cart = () => {
   const increaseItem = (_id) => {
     post(`/cart/increase-item/${_id}`, cartId)
         .then((response) => {
-          console.log("Updated cart ===>", response.data);
           setCart(response.data);
           navigate("/cart")
         })

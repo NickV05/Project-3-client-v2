@@ -39,7 +39,6 @@ function EditProductPage() {
     const requestBody = { name, description, cost, image, category };
     post(`/items/item-update/${productId}`, requestBody)
       .then((response) => {
-        console.log("Updated", response.data)
         navigate(`/product-details/${productId}`)
       });
   };
@@ -50,7 +49,6 @@ function EditProductPage() {
 
     fileChange(e)
       .then((response) => {
-        console.log(response.data);
         setImage( response.data.image);
         setButtonDisabled(false);
       })

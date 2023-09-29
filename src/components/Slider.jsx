@@ -11,11 +11,9 @@ const Slider = () => {
     const getAllProducts = () => {
         get("/items")
           .then((response) => {
-            console.log("All products:", response.data);
             const Arr = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((item) => {
                 return item
             })
-            console.log("Array ===> ", Arr)
             setItem(Arr)
           })
           .catch((error) => console.log(error));
